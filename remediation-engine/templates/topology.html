@@ -1,0 +1,1070 @@
+{% extends "base.html" %}
+
+{% block title %}Cluster Topology — Remediation Console{% endblock %}
+
+{% block topbar %}
+<div class="flex items-center gap-3 mr-auto">
+  <div>
+    <div class="text-[14px] font-semibold tracking-tight">
+      Cluster topology
+    </div>
+    <div class="text-[11px] text-text3 mt-0.5">
+      Kubernetes pod inventory and security state
+    </div>
+  </div>
+</div>
+
+<div
+  class="flex items-center gap-2 text-[11px] text-text2"
+  x-data="{ live: true }"
+  @rc:connlost.window="live=false"
+  @rc:connok.window="live=true"
+>
+  <span
+    class="relative flex w-2 h-2"
+  >
+    <span
+      class="absolute inline-flex w-full h-full rounded-full opacity-50"
+      :class="live ? 'bg-success animate-ping' : 'bg-danger'"
+    ></span>
+
+    <span
+      class="relative inline-flex w-2 h-2 rounded-full"
+      :class="live ? 'bg-success' : 'bg-danger'"
+    ></span>
+  </span>
+
+  <span x-text="live ? 'Live' : 'Connection lost'"></span>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+  /* =========================================================
+     TOPOLOGY PAGE
+     Enterprise SOC / Kubernetes console
+     ========================================================= */
+
+  .topology-page {
+    height: calc(100vh - 118px);
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* ---------------------------------------------------------
+     Header metrics
+     --------------------------------------------------------- */
+
+  .topology-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .topology-metric {
+    position: relative;
+    background: #111419;
+    border: 1px solid #242a32;
+    min-height: 64px;
+    padding: 11px 13px;
+    overflow: hidden;
+    transition:
+      border-color 180ms ease,
+      background 180ms ease;
+  }
+
+  .topology-metric:hover {
+    background: #14181e;
+    border-color: #303844;
+  }
+
+  .topology-metric::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #3f4854;
+  }
+
+  .topology-metric.running::before {
+    background: #45c979;
+  }
+
+  .topology-metric.isolated::before {
+    background: #ef6262;
+  }
+
+  .topology-metric.namespaces::before {
+    background: #4c8dff;
+  }
+
+  .topology-metric-label {
+    color: #68727e;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .11em;
+    font-weight: 600;
+  }
+
+  .topology-metric-value {
+    margin-top: 4px;
+    color: #e7ebf0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  /* ---------------------------------------------------------
+     Controls
+     --------------------------------------------------------- */
+
+  .topology-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .topology-search {
+    position: relative;
+    width: 270px;
+  }
+
+  .topology-search input {
+    width: 100%;
+    height: 34px;
+    background: #111419;
+    border: 1px solid #282f38;
+    color: #d7dde5;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    padding: 0 12px 0 32px;
+    outline: none;
+    transition:
+      border-color 160ms ease,
+      background 160ms ease;
+  }
+
+  .topology-search input::placeholder {
+    color: #59636f;
+  }
+
+  .topology-search input:focus {
+    background: #14181e;
+    border-color: #43505e;
+  }
+
+  .topology-search-icon {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 13px;
+    height: 13px;
+    color: #66717d;
+    pointer-events: none;
+  }
+
+  .topology-filter {
+    height: 34px;
+    border: 1px solid #282f38;
+    background: #111419;
+    color: #929ca8;
+    padding: 0 11px;
+    font-size: 10px;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition:
+      color 160ms ease,
+      border-color 160ms ease,
+      background 160ms ease;
+  }
+
+  .topology-filter:hover {
+    color: #d7dde5;
+    background: #15191f;
+  }
+
+  .topology-filter.active {
+    color: #ef7474;
+    border-color: #733b40;
+    background: #211719;
+  }
+
+  .topology-filter-icon {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* ---------------------------------------------------------
+     Namespace filters
+     --------------------------------------------------------- */
+
+  #topology-namespace-filters {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .topology-ns-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    max-width: 190px;
+    padding: 0 8px;
+    border: 1px solid #252c34;
+    background: #101318;
+    color: #7f8995;
+    cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      background 150ms ease,
+      opacity 150ms ease;
+  }
+
+  .topology-ns-filter:hover {
+    color: #cbd2da;
+    border-color: #38424e;
+  }
+
+  .topology-ns-filter.active {
+    color: #cbd2da;
+    background: #151a20;
+    border-color: #38424e;
+  }
+
+  .topology-ns-filter:not(.active) {
+    opacity: .45;
+  }
+
+  .topology-ns-dot {
+    width: 5px;
+    height: 5px;
+    flex: 0 0 5px;
+    border-radius: 50%;
+  }
+
+  .topology-ns-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .topology-ns-count {
+    color: #59636e;
+    margin-left: 2px;
+  }
+
+  /* ---------------------------------------------------------
+     Graph container
+     --------------------------------------------------------- */
+
+  .topology-workspace {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    border: 1px solid #252b33;
+    background: #0b0e13;
+    overflow: hidden;
+  }
+
+  .topology-workspace::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255,255,255,.018) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        rgba(255,255,255,.018) 1px,
+        transparent 1px
+      );
+    background-size: 48px 48px;
+    opacity: .18;
+    z-index: 0;
+  }
+
+  .topology-workspace::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: #313943;
+    opacity: .6;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  #topo-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+    cursor: grab;
+  }
+
+  #topo-svg:active {
+    cursor: grabbing;
+  }
+
+  /* ---------------------------------------------------------
+     Graph information
+     --------------------------------------------------------- */
+
+  .topology-info {
+    position: absolute;
+    left: 14px;
+    bottom: 13px;
+    z-index: 10;
+    pointer-events: none;
+    background: rgba(13, 16, 21, .92);
+    border: 1px solid #242b34;
+    padding: 8px 10px;
+  }
+
+  .topology-info-title {
+    color: #9da6b1;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+  }
+
+  .topology-info-subtitle {
+    color: #59636f;
+    font-size: 9px;
+    margin-top: 3px;
+  }
+
+  /* ---------------------------------------------------------
+     Legend
+     --------------------------------------------------------- */
+
+  .topology-legend {
+    position: absolute;
+    right: 14px;
+    bottom: 13px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 9px;
+    background: rgba(13, 16, 21, .92);
+    border: 1px solid #242b34;
+    pointer-events: none;
+  }
+
+  .topology-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #707b87;
+    font-size: 9px;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .topology-legend-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  /* ---------------------------------------------------------
+     Zoom controls
+     --------------------------------------------------------- */
+
+  .topology-zoom {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #292f37;
+    background: #111419;
+  }
+
+  .topology-zoom button {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border-bottom: 1px solid #292f37;
+    background: transparent;
+    color: #858f9a;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    cursor: pointer;
+    transition:
+      color 120ms ease,
+      background 120ms ease;
+  }
+
+  .topology-zoom button:last-child {
+    border-bottom: 0;
+  }
+
+  .topology-zoom button:hover {
+    background: #1a1f26;
+    color: #e0e5ea;
+  }
+
+  /* ---------------------------------------------------------
+     Tooltip
+     --------------------------------------------------------- */
+
+  #topo-tooltip {
+    position: absolute;
+    z-index: 50;
+    pointer-events: none;
+    min-width: 170px;
+    max-width: 270px;
+    padding: 9px 10px;
+    background: #14181e;
+    border: 1px solid #343c46;
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    line-height: 1.55;
+    opacity: 0;
+    transition: opacity 100ms ease;
+  }
+
+  /* ---------------------------------------------------------
+     Detail panel
+     --------------------------------------------------------- */
+
+  #detail-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 40;
+    width: 315px;
+    max-width: 90%;
+    background: #101318;
+    border-left: 1px solid #2b323b;
+    box-shadow: -16px 0 35px rgba(0,0,0,.25);
+    transform: translateX(100%);
+    transition: transform 240ms cubic-bezier(.22,.61,.36,1);
+    overflow-y: auto;
+  }
+
+  #detail-panel:not(.translate-x-full) {
+    transform: translateX(0);
+  }
+
+  .topology-detail-header {
+    padding: 17px 17px 14px;
+    border-bottom: 1px solid #242b33;
+  }
+
+  .topology-detail-kicker {
+    color: #65707c;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+
+  #dp-close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 26px;
+    height: 26px;
+    border: 1px solid #2c343d;
+    background: #15191f;
+    color: #7b8692;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+      color 120ms ease,
+      background 120ms ease,
+      border-color 120ms ease;
+  }
+
+  #dp-close:hover {
+    color: #e2e7ec;
+    background: #1c2229;
+    border-color: #414b56;
+  }
+
+  #dp-body {
+    padding: 17px;
+  }
+
+  /* ---------------------------------------------------------
+     Responsive
+     --------------------------------------------------------- */
+
+  @media (max-width: 900px) {
+    .topology-metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .topology-search {
+      width: 220px;
+    }
+
+    .topology-legend {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .topology-page {
+      height: auto;
+      min-height: calc(100vh - 100px);
+    }
+
+    .topology-metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .topology-search {
+      width: 100%;
+    }
+
+    #topology-namespace-filters {
+      width: 100%;
+      flex-basis: 100%;
+    }
+
+    .topology-workspace {
+      min-height: 560px;
+    }
+
+    .topology-info {
+      display: none;
+    }
+  }
+  /* ==========================================================
+   Topology JS components
+   ========================================================== */
+
+.topology-namespace-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 31px;
+  padding: 0 10px;
+
+  background: #10151b;
+  border: 1px solid #252d36;
+  border-radius: 3px;
+
+  color: #89929d;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
+}
+
+.topology-namespace-chip:hover {
+  background: #151b22;
+  border-color: #3a4551;
+  color: #cbd2da;
+}
+
+.topology-namespace-chip.active {
+  background: #17202a;
+  border-color: #526171;
+  color: #e1e6eb;
+}
+
+.namespace-chip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.namespace-chip-count {
+  color: #59636e;
+  font-size: 9px;
+}
+
+.topology-namespace-chip.active .namespace-chip-count {
+  color: #87919c;
+}
+
+
+/* ==========================================================
+   SVG typography
+   ========================================================== */
+
+.namespace-title,
+.namespace-count,
+.pod-name,
+.pod-meta {
+  pointer-events: none;
+  user-select: none;
+}
+
+.pod-node {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.pod-node:hover {
+  z-index: 20;
+}
+
+
+/* ==========================================================
+   Tooltip
+   ========================================================== */
+
+#topo-tooltip {
+  position: absolute;
+  z-index: 100;
+
+  display: none;
+
+  min-width: 230px;
+  max-width: 340px;
+
+  padding: 12px 14px;
+
+  background: #0d1117;
+  border: 1px solid #303944;
+  border-radius: 4px;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.35);
+
+  pointer-events: none;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+}
+
+.tooltip-title {
+  margin-bottom: 10px;
+
+  color: #e4e9ee;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+
+  padding: 4px 0;
+
+  color: #626d78;
+  font-size: 9px;
+}
+
+.tooltip-row strong {
+  color: #aeb7c1;
+  font-weight: 500;
+  text-align: right;
+}
+
+
+/* ==========================================================
+   Detail panel
+   ========================================================== */
+
+#detail-panel {
+  transition:
+    transform 220ms ease;
+}
+
+.dp-section {
+  padding: 15px 0;
+  border-bottom: 1px solid #20262e;
+}
+
+.dp-kicker,
+.dp-label {
+  margin-bottom: 6px;
+
+  color: #5f6974;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dp-title {
+  color: #e2e7ec;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.dp-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 8px;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.dp-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dp-value {
+  color: #b4bdc7;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+
+  font-size: 10px;
+
+  overflow-wrap: anywhere;
+}
+
+.dp-value.mono {
+  color: #8e99a5;
+}
+
+.dp-value.danger {
+  color: #ef6262;
+}
+
+.dp-id {
+  border-bottom: 0;
+}
+</style>
+
+
+<div
+  class="topology-page"
+  x-data="topologyApp()"
+  x-init="init()"
+>
+
+  <!-- =======================================================
+       METRICS
+       ======================================================= -->
+
+  <section class="topology-metrics">
+
+    <div class="topology-metric">
+      <div class="topology-metric-label">
+        Visible pods
+      </div>
+
+      <div
+        id="topology-pod-count"
+        class="topology-metric-value"
+      >
+        0
+      </div>
+    </div>
+
+
+    <div class="topology-metric namespaces">
+      <div class="topology-metric-label">
+        Namespaces
+      </div>
+
+      <div
+        id="topology-namespace-count"
+        class="topology-metric-value"
+      >
+        0
+      </div>
+    </div>
+
+
+    <div class="topology-metric running">
+      <div class="topology-metric-label">
+        Running
+      </div>
+
+      <div
+        id="topology-running-count"
+        class="topology-metric-value"
+      >
+        0
+      </div>
+    </div>
+
+
+    <div class="topology-metric isolated">
+      <div class="topology-metric-label">
+        Isolated
+      </div>
+
+      <div
+        id="topology-isolated-count"
+        class="topology-metric-value"
+      >
+        0
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       CONTROLS
+       ======================================================= -->
+
+  <section class="topology-controls">
+
+    <div class="topology-search">
+
+      <svg
+        class="topology-search-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      >
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-4-4"></path>
+      </svg>
+
+      <input
+        id="topology-search"
+        type="text"
+        placeholder="Search pods, namespaces, IPs..."
+        autocomplete="off"
+        spellcheck="false"
+      >
+
+    </div>
+
+
+    <button
+      id="topology-isolated-filter"
+      class="topology-filter"
+      type="button"
+    >
+      <span class="topology-filter-icon"></span>
+      Isolated only
+    </button>
+
+
+    <div id="topology-namespace-filters"></div>
+
+  </section>
+
+
+  <!-- =======================================================
+       TOPOLOGY WORKSPACE
+       ======================================================= -->
+
+  <section
+    id="topo-stage"
+    class="topology-workspace"
+  >
+
+    <svg
+      id="topo-svg"
+      aria-label="Kubernetes cluster topology"
+    ></svg>
+
+
+    <!-- Tooltip -->
+
+    <div id="topo-tooltip"></div>
+
+
+    <!-- =====================================================
+         DETAIL PANEL
+         ===================================================== -->
+
+    <aside
+      id="detail-panel"
+      class="translate-x-full"
+    >
+
+      <button
+        id="dp-close"
+        type="button"
+        aria-label="Close details"
+      >
+        ×
+      </button>
+
+      <div
+        class="topology-detail-header"
+      >
+        <div class="topology-detail-kicker">
+          Kubernetes object
+        </div>
+      </div>
+
+      <div id="dp-body"></div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         ZOOM
+         ===================================================== -->
+
+    <div class="topology-zoom">
+
+      <button
+        id="zoom-in"
+        type="button"
+        aria-label="Zoom in"
+      >
+        +
+      </button>
+
+      <button
+        id="zoom-reset"
+        type="button"
+        aria-label="Reset view"
+      >
+        ⌂
+      </button>
+
+      <button
+        id="zoom-out"
+        type="button"
+        aria-label="Zoom out"
+      >
+        −
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         INFORMATION
+         ===================================================== -->
+
+    <div class="topology-info">
+
+      <div class="topology-info-title">
+        Kubernetes inventory
+      </div>
+
+      <div class="topology-info-subtitle">
+        Namespace membership · pod security state
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         LEGEND
+         ===================================================== -->
+
+    <div class="topology-legend">
+
+      <div class="topology-legend-item">
+        <span
+          class="topology-legend-dot"
+          style="background:#45c979"
+        ></span>
+        Running
+      </div>
+
+      <div class="topology-legend-item">
+        <span
+          class="topology-legend-dot"
+          style="background:#4c8dff"
+        ></span>
+        Completed
+      </div>
+
+      <div class="topology-legend-item">
+        <span
+          class="topology-legend-dot"
+          style="background:#ef6262"
+        ></span>
+        Isolated
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/topology.js') }}"></script>
+
+{% endblock %}

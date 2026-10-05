@@ -1,0 +1,943 @@
+timestamp_utc,label,detail
+2026-09-26T18:20:19,idle_start,initial_idle
+2026-09-26T18:23:19,idle_end,initial_idle
+2026-09-26T18:23:20,attack,shell_config:test-pod-apt
+2026-09-26T18:23:22,attack,suid:test-pod
+2026-09-26T18:23:56,attack,k8s_api:test-pod-apt
+2026-09-26T18:24:01,attack,env_privesc:test-pod-apt
+2026-09-26T18:24:03,attack,suid:test-pod
+2026-09-26T18:25:34,attack,clear_history:test-pod-apt
+2026-09-26T18:25:39,attack,rsync:test-pod-apt
+run7,2026-09-28T20:37:30.563,2026-09-28T20:37:30.563,meta,pod_created,test-pod-run7,,image:busybox
+run7,2026-09-28T20:37:35.580,2026-09-28T20:37:35.580,meta,pod_created,test-pod-apt-run7,,image:ubuntu
+run7,2026-09-28T20:37:35.586,2026-09-28T20:37:35.587,idle,idle_start,,,initial_idle
+run7,2026-09-28T20:40:35.590,2026-09-28T20:40:35.591,idle,idle_end,,,initial_idle
+run7,2026-09-28T20:40:35.592,2026-09-28T20:40:35.765,benign,pkg_mgmt_fresh,test-pod-apt-run7,Launch Package Management Process in Container,fresh_pod_setup
+run7,2026-09-28T20:40:35.773,2026-09-28T20:40:35.875,attack,shell,test-pod-run7,Terminal shell in container,
+run7,2026-09-28T20:40:39.878,2026-09-28T20:40:39.981,attack,k8s_api,test-pod-apt-run7,Contact K8S API Server From Container,
+run7,2026-09-28T20:40:45.984,2026-09-28T20:40:46.088,attack,env_privesc,test-pod-apt-run7,Potential Local Privilege Escalation via Environment Variables Misuse,
+run7,2026-09-28T20:40:47.092,2026-09-28T20:40:47.211,attack,sensitive_file,test-pod-run7,Read sensitive file untrusted,
+run7,2026-09-28T20:41:22.218,2026-09-28T20:41:22.305,attack,k8s_api,test-pod-apt-run7,Contact K8S API Server From Container,
+run7,2026-09-28T20:42:37.316,2026-09-28T20:42:37.417,benign,config_read,test-pod-apt-run7,,admin_inspection
+run7,2026-09-28T20:42:42.423,2026-09-28T20:42:42.531,benign,routine_network,test-pod-apt-run7,,healthcheck
+run7,2026-09-28T20:43:20.535,2026-09-28T20:43:20.537,idle,idle_round,,,round_4
+run7,2026-09-28T20:44:34.542,2026-09-28T20:44:34.640,attack,clear_history,test-pod-apt-run7,Delete or rename shell history,
+run7,2026-09-28T20:44:35.643,2026-09-28T20:44:35.732,attack,shell_config,test-pod-apt-run7,Modify Shell Configuration File,
+run7,2026-09-28T20:44:39.736,2026-09-28T20:44:39.860,attack,binary_drop,test-pod-run7,Drop and execute new binary in container,
+run7,2026-09-28T20:44:43.863,2026-09-28T20:44:43.951,attack,k8s_api,test-pod-apt-run7,Contact K8S API Server From Container,
+run7,2026-09-28T20:44:48.955,2026-09-28T20:44:49.044,attack,rsync,test-pod-apt-run7,Launch Ingress Remote File Copy Tools in Container,
+run7,2026-09-28T20:44:54.048,2026-09-28T20:44:54.144,attack,ssh_info,test-pod-apt-run7,Read ssh information,
+run7,2026-09-28T20:44:55.147,2026-09-28T20:45:03.453,attack,pkg_mgmt_late,test-pod-apt-run7,Launch Package Management Process in Container,late(pod already old)
+run7,2026-09-28T20:45:04.456,2026-09-28T20:45:04.601,attack,env_privesc,test-pod-apt-run7,Potential Local Privilege Escalation via Environment Variables Misuse,
+run7,2026-09-28T20:46:28.609,2026-09-28T20:46:28.702,attack,shell_config,test-pod-apt-run7,Modify Shell Configuration File,
+run7,2026-09-28T20:46:32.708,2026-09-28T20:46:32.834,attack,suid,test-pod-run7,Set Setuid or Setgid bit,
+run7,2026-09-28T20:48:13.841,2026-09-28T20:48:13.939,attack,suid,test-pod-run7,Set Setuid or Setgid bit,
+run7,2026-09-28T20:48:17.943,2026-09-28T20:48:18.036,attack,sensitive_file,test-pod-run7,Read sensitive file untrusted,
+run7,2026-09-28T20:48:21.038,2026-09-28T20:48:21.120,attack,rsync,test-pod-apt-run7,Launch Ingress Remote File Copy Tools in Container,
+run7,2026-09-28T20:48:22.122,2026-09-28T20:48:22.246,attack,write_root,test-pod-run7,Write below root,
+run7,2026-09-28T20:48:25.248,2026-09-28T20:48:25.334,attack,k8s_api,test-pod-apt-run7,Contact K8S API Server From Container,
+run7,2026-09-28T20:49:14.341,2026-09-28T20:49:14.462,attack,sensitive_file,test-pod-run7,Read sensitive file untrusted,
+run7,2026-09-28T20:49:18.465,2026-09-28T20:49:18.559,attack,shell,test-pod-run7,Terminal shell in container,
+run7,2026-09-28T20:49:21.562,2026-09-28T20:49:21.654,attack,binary_drop,test-pod-run7,Drop and execute new binary in container,
+run7,2026-09-28T20:49:24.658,2026-09-28T20:49:24.787,attack,suid,test-pod-run7,Set Setuid or Setgid bit,
+run7,2026-09-28T20:49:26.790,2026-09-28T20:49:26.878,attack,write_root,test-pod-run7,Write below root,
+run7,2026-09-28T20:49:28.881,2026-09-28T20:49:28.973,attack,shell_config,test-pod-apt-run7,Modify Shell Configuration File,
+run7,2026-09-28T20:50:49.981,2026-09-28T20:50:50.090,attack,shell,test-pod-run7,Terminal shell in container,
+run7,2026-09-28T20:50:56.093,2026-09-28T20:50:56.181,attack,write_root,test-pod-run7,Write below root,
+run7,2026-09-28T20:50:58.184,2026-09-28T20:50:58.288,attack,env_privesc,test-pod-apt-run7,Potential Local Privilege Escalation via Environment Variables Misuse,
+run7,2026-09-28T20:51:01.292,2026-09-28T20:51:01.386,attack,k8s_api,test-pod-apt-run7,Contact K8S API Server From Container,
+run7,2026-09-28T20:51:07.390,2026-09-28T20:51:07.482,attack,clear_history,test-pod-apt-run7,Delete or rename shell history,
+run7,2026-09-28T20:51:08.487,2026-09-28T20:51:08.589,attack,ssh_info,test-pod-apt-run7,Read ssh information,
+run7,2026-09-28T20:51:12.594,2026-09-28T20:51:12.707,attack,sensitive_file,test-pod-run7,Read sensitive file untrusted,
+run7,2026-09-28T20:51:16.711,2026-09-28T20:51:16.804,attack,shell_config,test-pod-apt-run7,Modify Shell Configuration File,
+run7,2026-09-28T20:52:38.809,2026-09-28T20:52:38.810,idle,idle_round,,,round_10
+run7,2026-09-28T20:54:18.816,2026-09-28T20:54:18.935,benign,routine_read,test-pod-apt-run7,,admin_inspection
+run7,2026-09-28T20:56:00.944,2026-09-28T20:56:01.034,benign,config_read,test-pod-apt-run7,,admin_inspection
+run7,2026-09-28T20:56:40.040,2026-09-28T20:56:40.130,benign,config_read,test-pod-apt-run7,,admin_inspection
+run7,2026-09-28T20:56:46.134,2026-09-28T20:56:46.226,benign,routine_read,test-pod-apt-run7,,admin_inspection
+run7,2026-09-28T20:58:05.232,2026-09-28T20:58:06.362,attack,pkg_mgmt_late,test-pod-apt-run7,Launch Package Management Process in Container,late(pod already old)
+run7,2026-09-28T20:58:12.366,2026-09-28T20:58:12.478,attack,clear_history,test-pod-apt-run7,Delete or rename shell history,
+run7,2026-09-28T20:58:13.481,2026-09-28T20:58:13.598,attack,shell_config,test-pod-apt-run7,Modify Shell Configuration File,
+run7,2026-09-28T20:58:16.601,2026-09-28T20:58:16.697,attack,suid,test-pod-run7,Set Setuid or Setgid bit,
+run7,2026-09-28T20:59:07.706,2026-09-28T20:59:07.810,attack,rsync,test-pod-apt-run7,Launch Ingress Remote File Copy Tools in Container,
+run7,2026-09-28T20:59:13.813,2026-09-28T20:59:13.906,attack,env_privesc,test-pod-apt-run7,Potential Local Privilege Escalation via Environment Variables Misuse,
+run7,2026-09-28T21:00:03.912,2026-09-28T21:00:03.914,idle,idle_start,,,final_idle
+run7,2026-09-28T21:03:03.917,2026-09-28T21:03:03.918,idle,idle_end,,,final_idle
+run8,2026-09-28T21:05:55.485,2026-09-28T21:05:55.485,meta,pod_created,test-pod-run8,,image:busybox
+run8,2026-09-28T21:05:59.500,2026-09-28T21:05:59.500,meta,pod_created,test-pod-apt-run8,,image:ubuntu
+run8,2026-09-28T21:05:59.501,2026-09-28T21:05:59.505,idle,idle_start,,,initial_idle
+run8,2026-09-28T21:08:59.513,2026-09-28T21:08:59.514,idle,idle_end,,,initial_idle
+run8,2026-09-28T21:09:10.411,2026-09-28T21:09:19.064,benign,pkg_mgmt_fresh,test-pod-apt-run8,Launch Package Management Process in Container,fresh_pod_setup
+run8,2026-09-28T21:09:19.071,2026-09-28T21:09:19.185,attack,env_privesc,test-pod-apt-run8,Potential Local Privilege Escalation via Environment Variables Misuse,
+run8,2026-09-28T21:09:20.189,2026-09-28T21:09:21.570,attack,pkg_mgmt_late,test-pod-apt-run8,Launch Package Management Process in Container,late(pod already old)
+run8,2026-09-28T21:09:25.576,2026-09-28T21:09:25.682,attack,binary_drop,test-pod-run8,Drop and execute new binary in container,
+run8,2026-09-28T21:09:27.685,2026-09-28T21:09:27.862,attack,k8s_api,test-pod-apt-run8,Contact K8S API Server From Container,
+run8,2026-09-28T21:09:33.865,2026-09-28T21:09:33.963,attack,suid,test-pod-run8,Set Setuid or Setgid bit,
+run8,2026-09-28T21:09:35.967,2026-09-28T21:09:36.056,attack,clear_history,test-pod-apt-run8,Delete or rename shell history,
+run8,2026-09-28T21:09:39.059,2026-09-28T21:09:39.144,attack,shell,test-pod-run8,Terminal shell in container,
+run8,2026-09-28T21:09:45.147,2026-09-28T21:09:45.235,attack,rsync,test-pod-apt-run8,Launch Ingress Remote File Copy Tools in Container,
+run8,2026-09-28T21:09:50.239,2026-09-28T21:09:50.334,attack,shell_config,test-pod-apt-run8,Modify Shell Configuration File,
+run8,2026-09-28T21:11:35.340,2026-09-28T21:11:35.343,idle,idle_round,,,round_2
+run8,2026-09-28T21:13:04.349,2026-09-28T21:13:04.440,benign,config_read,test-pod-apt-run8,,admin_inspection
+run8,2026-09-28T21:13:10.443,2026-09-28T21:13:10.642,benign,routine_network,test-pod-apt-run8,,healthcheck
+run8,2026-09-28T21:13:15.645,2026-09-28T21:13:15.739,benign,routine_read,test-pod-apt-run8,,admin_inspection
+run8,2026-09-28T21:14:54.746,2026-09-28T21:14:54.843,attack,write_root,test-pod-run8,Write below root,
+run8,2026-09-28T21:14:57.848,2026-09-28T21:14:57.933,attack,rsync,test-pod-apt-run8,Launch Ingress Remote File Copy Tools in Container,
+run8,2026-09-28T21:14:58.936,2026-09-28T21:15:00.493,attack,pkg_mgmt_late,test-pod-apt-run8,Launch Package Management Process in Container,late(pod already old)
+run8,2026-09-28T21:15:04.497,2026-09-28T21:15:04.578,attack,shell,test-pod-run8,Terminal shell in container,
+run8,2026-09-28T21:15:56.585,2026-09-28T21:15:56.675,attack,shell_config,test-pod-apt-run8,Modify Shell Configuration File,
+run8,2026-09-28T21:16:01.681,2026-09-28T21:16:01.788,attack,binary_drop,test-pod-run8,Drop and execute new binary in container,
+run8,2026-09-28T21:16:06.791,2026-09-28T21:16:06.904,attack,k8s_api,test-pod-apt-run8,Contact K8S API Server From Container,
+run8,2026-09-28T21:16:10.907,2026-09-28T21:16:10.992,attack,rsync,test-pod-apt-run8,Launch Ingress Remote File Copy Tools in Container,
+run8,2026-09-28T21:16:16.995,2026-09-28T21:16:17.090,attack,shell,test-pod-run8,Terminal shell in container,
+run8,2026-09-28T21:17:16.094,2026-09-28T21:17:16.095,idle,idle_round,,,round_6
+run8,2026-09-28T21:17:47.100,2026-09-28T21:17:47.195,attack,shell,test-pod-run8,Terminal shell in container,
+run8,2026-09-28T21:17:52.198,2026-09-28T21:17:52.291,attack,suid,test-pod-run8,Set Setuid or Setgid bit,
+run8,2026-09-28T21:17:53.295,2026-09-28T21:17:53.411,attack,sensitive_file,test-pod-run8,Read sensitive file untrusted,
+run8,2026-09-28T21:19:17.418,2026-09-28T21:19:17.507,attack,suid,test-pod-run8,Set Setuid or Setgid bit,
+run8,2026-09-28T21:19:18.510,2026-09-28T21:19:18.608,attack,k8s_api,test-pod-apt-run8,Contact K8S API Server From Container,
+run8,2026-09-28T21:19:19.614,2026-09-28T21:19:21.169,attack,pkg_mgmt_late,test-pod-apt-run8,Launch Package Management Process in Container,late(pod already old)
+run8,2026-09-28T21:19:25.174,2026-09-28T21:19:25.263,attack,shell,test-pod-run8,Terminal shell in container,
+run8,2026-09-28T21:19:29.265,2026-09-28T21:19:29.355,attack,env_privesc,test-pod-apt-run8,Potential Local Privilege Escalation via Environment Variables Misuse,
+run8,2026-09-28T21:19:33.359,2026-09-28T21:19:33.457,attack,ssh_info,test-pod-apt-run8,Read ssh information,
+run8,2026-09-28T21:19:34.461,2026-09-28T21:19:34.560,attack,write_root,test-pod-run8,Write below root,
+run8,2026-09-28T21:21:11.567,2026-09-28T21:21:11.658,benign,config_read,test-pod-apt-run8,,admin_inspection
+run8,2026-09-28T21:22:25.667,2026-09-28T21:22:25.772,benign,routine_read,test-pod-apt-run8,,admin_inspection
+run8,2026-09-28T21:22:30.775,2026-09-28T21:22:30.944,benign,routine_network,test-pod-apt-run8,,healthcheck
+run8,2026-09-28T21:24:11.950,2026-09-28T21:24:12.061,attack,k8s_api,test-pod-apt-run8,Contact K8S API Server From Container,
+run8,2026-09-28T21:24:16.064,2026-09-28T21:24:16.184,attack,binary_drop,test-pod-run8,Drop and execute new binary in container,
+run8,2026-09-28T21:24:17.188,2026-09-28T21:24:18.366,attack,pkg_mgmt_late,test-pod-apt-run8,Launch Package Management Process in Container,late(pod already old)
+run8,2026-09-28T21:24:19.369,2026-09-28T21:24:19.457,attack,write_root,test-pod-run8,Write below root,
+run8,2026-09-28T21:24:21.460,2026-09-28T21:24:21.569,attack,suid,test-pod-run8,Set Setuid or Setgid bit,
+run8,2026-09-28T21:24:59.579,2026-09-28T21:24:59.675,attack,suid,test-pod-run8,Set Setuid or Setgid bit,
+run8,2026-09-28T21:25:02.678,2026-09-28T21:25:02.815,attack,write_root,test-pod-run8,Write below root,
+run8,2026-09-28T21:25:06.819,2026-09-28T21:25:08.184,attack,pkg_mgmt_late,test-pod-apt-run8,Launch Package Management Process in Container,late(pod already old)
+run8,2026-09-28T21:26:35.192,2026-09-28T21:26:35.195,idle,idle_round,,,round_13
+run8,2026-09-28T21:27:08.203,2026-09-28T21:27:08.395,attack,binary_drop,test-pod-run8,Drop and execute new binary in container,
+run8,2026-09-28T21:27:10.400,2026-09-28T21:27:10.499,attack,sensitive_file,test-pod-run8,Read sensitive file untrusted,
+run8,2026-09-28T21:27:13.503,2026-09-28T21:27:13.606,attack,env_privesc,test-pod-apt-run8,Potential Local Privilege Escalation via Environment Variables Misuse,
+run8,2026-09-28T21:27:15.609,2026-09-28T21:27:15.700,attack,ssh_info,test-pod-apt-run8,Read ssh information,
+run8,2026-09-28T21:27:21.707,2026-09-28T21:27:21.926,attack,k8s_api,test-pod-apt-run8,Contact K8S API Server From Container,
+run8,2026-09-28T21:27:22.936,2026-09-28T21:27:23.055,attack,write_root,test-pod-run8,Write below root,
+run8,2026-09-28T21:27:58.068,2026-09-28T21:27:59.710,attack,pkg_mgmt_late,test-pod-apt-run8,Launch Package Management Process in Container,late(pod already old)
+run8,2026-09-28T21:28:01.714,2026-09-28T21:28:01.862,attack,sensitive_file,test-pod-run8,Read sensitive file untrusted,
+run8,2026-09-28T21:28:07.869,2026-09-28T21:28:08.141,attack,write_root,test-pod-run8,Write below root,
+run8,2026-09-28T21:28:10.180,2026-09-28T21:28:10.363,attack,k8s_api,test-pod-apt-run8,Contact K8S API Server From Container,
+run8,2026-09-28T21:28:14.368,2026-09-28T21:28:14.523,attack,env_privesc,test-pod-apt-run8,Potential Local Privilege Escalation via Environment Variables Misuse,
+run8,2026-09-28T21:28:15.526,2026-09-28T21:28:15.627,attack,rsync,test-pod-apt-run8,Launch Ingress Remote File Copy Tools in Container,
+run8,2026-09-28T21:28:20.630,2026-09-28T21:28:20.765,attack,shell_config,test-pod-apt-run8,Modify Shell Configuration File,
+run8,2026-09-28T21:28:24.770,2026-09-28T21:28:24.878,attack,clear_history,test-pod-apt-run8,Delete or rename shell history,
+run8,2026-09-28T21:29:35.884,2026-09-28T21:29:35.885,idle,idle_start,,,final_idle
+run8,2026-09-28T21:32:35.887,2026-09-28T21:32:35.888,idle,idle_end,,,final_idle
+run9,2026-09-28T21:35:53.841,2026-09-28T21:35:53.841,meta,pod_created,test-pod-run9,,image:busybox
+run9,2026-09-28T21:35:57.866,2026-09-28T21:35:57.866,meta,pod_created,test-pod-apt-run9,,image:ubuntu
+run9,2026-09-28T21:35:57.869,2026-09-28T21:35:57.871,idle,idle_start,,,initial_idle
+run9,2026-09-28T21:38:57.873,2026-09-28T21:38:57.875,idle,idle_end,,,initial_idle
+run9,2026-09-28T21:39:08.373,2026-09-28T21:39:16.028,benign,pkg_mgmt_fresh,test-pod-apt-run9,Launch Package Management Process in Container,fresh_pod_setup
+run9,2026-09-28T21:39:16.031,2026-09-28T21:39:16.033,idle,idle_round,,,round_1
+run9,2026-09-28T21:40:12.038,2026-09-28T21:40:12.123,attack,shell,test-pod-run9,Terminal shell in container,
+run9,2026-09-28T21:40:16.126,2026-09-28T21:40:16.295,attack,sensitive_file,test-pod-run9,Read sensitive file untrusted,
+run9,2026-09-28T21:40:22.299,2026-09-28T21:40:22.389,attack,shell_config,test-pod-apt-run9,Modify Shell Configuration File,
+run9,2026-09-28T21:41:34.396,2026-09-28T21:41:34.494,attack,sensitive_file,test-pod-run9,Read sensitive file untrusted,
+run9,2026-09-28T21:41:36.497,2026-09-28T21:41:36.646,attack,binary_drop,test-pod-run9,Drop and execute new binary in container,
+run9,2026-09-28T21:41:38.649,2026-09-28T21:41:38.772,attack,k8s_api,test-pod-apt-run9,Contact K8S API Server From Container,
+run9,2026-09-28T21:41:43.775,2026-09-28T21:41:43.864,attack,suid,test-pod-run9,Set Setuid or Setgid bit,
+run9,2026-09-28T21:41:44.867,2026-09-28T21:41:45.887,attack,pkg_mgmt_late,test-pod-apt-run9,Launch Package Management Process in Container,late(pod already old)
+run9,2026-09-28T21:42:49.895,2026-09-28T21:42:49.985,attack,shell_config,test-pod-apt-run9,Modify Shell Configuration File,
+run9,2026-09-28T21:42:53.987,2026-09-28T21:42:54.080,attack,rsync,test-pod-apt-run9,Launch Ingress Remote File Copy Tools in Container,
+run9,2026-09-28T21:42:58.083,2026-09-28T21:42:58.183,attack,env_privesc,test-pod-apt-run9,Potential Local Privilege Escalation via Environment Variables Misuse,
+run9,2026-09-28T21:43:00.185,2026-09-28T21:43:00.300,attack,k8s_api,test-pod-apt-run9,Contact K8S API Server From Container,
+run9,2026-09-28T21:43:06.303,2026-09-28T21:43:06.405,attack,suid,test-pod-run9,Set Setuid or Setgid bit,
+run9,2026-09-28T21:43:42.410,2026-09-28T21:43:42.412,idle,idle_round,,,round_5
+run9,2026-09-28T21:44:47.418,2026-09-28T21:44:47.510,benign,config_read,test-pod-apt-run9,,admin_inspection
+run9,2026-09-28T21:44:49.514,2026-09-28T21:44:49.615,benign,routine_read,test-pod-apt-run9,,admin_inspection
+run9,2026-09-28T21:45:26.621,2026-09-28T21:45:26.731,attack,rsync,test-pod-apt-run9,Launch Ingress Remote File Copy Tools in Container,
+run9,2026-09-28T21:45:27.733,2026-09-28T21:45:27.839,attack,clear_history,test-pod-apt-run9,Delete or rename shell history,
+run9,2026-09-28T21:45:32.842,2026-09-28T21:45:32.930,attack,suid,test-pod-run9,Set Setuid or Setgid bit,
+run9,2026-09-28T21:46:24.934,2026-09-28T21:46:24.939,idle,idle_round,,,round_8
+run9,2026-09-28T21:47:38.945,2026-09-28T21:47:39.120,benign,routine_network,test-pod-apt-run9,,healthcheck
+run9,2026-09-28T21:47:42.124,2026-09-28T21:47:42.211,benign,config_read,test-pod-apt-run9,,admin_inspection
+run9,2026-09-28T21:49:10.217,2026-09-28T21:49:10.321,attack,binary_drop,test-pod-run9,Drop and execute new binary in container,
+run9,2026-09-28T21:49:13.324,2026-09-28T21:49:13.442,attack,env_privesc,test-pod-apt-run9,Potential Local Privilege Escalation via Environment Variables Misuse,
+run9,2026-09-28T21:49:47.454,2026-09-28T21:49:49.007,attack,pkg_mgmt_late,test-pod-apt-run9,Launch Package Management Process in Container,late(pod already old)
+run9,2026-09-28T21:49:53.013,2026-09-28T21:49:53.126,attack,shell,test-pod-run9,Terminal shell in container,
+run9,2026-09-28T21:50:35.137,2026-09-28T21:50:35.378,benign,routine_network,test-pod-apt-run9,,healthcheck
+run9,2026-09-28T21:51:42.384,2026-09-28T21:51:42.479,attack,clear_history,test-pod-apt-run9,Delete or rename shell history,
+run9,2026-09-28T21:51:48.482,2026-09-28T21:51:48.569,attack,write_root,test-pod-run9,Write below root,
+run9,2026-09-28T21:51:53.573,2026-09-28T21:51:53.787,attack,env_privesc,test-pod-apt-run9,Potential Local Privilege Escalation via Environment Variables Misuse,
+run9,2026-09-28T21:51:56.790,2026-09-28T21:51:56.931,attack,shell,test-pod-run9,Terminal shell in container,
+run9,2026-09-28T21:53:05.939,2026-09-28T21:53:06.041,benign,config_read,test-pod-apt-run9,,admin_inspection
+run9,2026-09-28T21:54:38.047,2026-09-28T21:54:38.048,idle,idle_round,,,round_15
+run9,2026-09-28T21:55:18.051,2026-09-28T21:55:18.052,idle,idle_start,,,final_idle
+run9,2026-09-28T21:58:18.054,2026-09-28T21:58:18.056,idle,idle_end,,,final_idle
+run10,2026-09-28T21:59:51.029,2026-09-28T21:59:51.029,meta,pod_created,test-pod-run10,,image:busybox
+run10,2026-09-28T21:59:55.065,2026-09-28T21:59:55.065,meta,pod_created,test-pod-apt-run10,,image:ubuntu
+run10,2026-09-28T21:59:55.067,2026-09-28T21:59:55.068,idle,idle_start,,,initial_idle
+run10,2026-09-28T22:02:55.072,2026-09-28T22:02:55.073,idle,idle_end,,,initial_idle
+run10,2026-09-28T22:03:04.564,2026-09-28T22:03:13.259,benign,pkg_mgmt_fresh,test-pod-apt-run10,Launch Package Management Process in Container,fresh_pod_setup
+run10,2026-09-28T22:03:13.264,2026-09-28T22:03:13.412,attack,k8s_api,test-pod-apt-run10,Contact K8S API Server From Container,
+run10,2026-09-28T22:03:16.415,2026-09-28T22:03:16.541,attack,shell_config,test-pod-apt-run10,Modify Shell Configuration File,
+run10,2026-09-28T22:03:19.544,2026-09-28T22:03:19.654,attack,rsync,test-pod-apt-run10,Launch Ingress Remote File Copy Tools in Container,
+run10,2026-09-28T22:03:21.659,2026-09-28T22:03:21.799,attack,suid,test-pod-run10,Set Setuid or Setgid bit,
+run10,2026-09-28T22:03:25.804,2026-09-28T22:03:25.930,attack,sensitive_file,test-pod-run10,Read sensitive file untrusted,
+run10,2026-09-28T22:03:26.934,2026-09-28T22:03:27.036,attack,binary_drop,test-pod-run10,Drop and execute new binary in container,
+run10,2026-09-28T22:04:51.046,2026-09-28T22:04:51.167,attack,rsync,test-pod-apt-run10,Launch Ingress Remote File Copy Tools in Container,
+run10,2026-09-28T22:04:54.170,2026-09-28T22:04:54.323,attack,env_privesc,test-pod-apt-run10,Potential Local Privilege Escalation via Environment Variables Misuse,
+run10,2026-09-28T22:04:58.326,2026-09-28T22:04:58.416,attack,suid,test-pod-run10,Set Setuid or Setgid bit,
+run10,2026-09-28T22:06:00.423,2026-09-28T22:06:00.528,attack,clear_history,test-pod-apt-run10,Delete or rename shell history,
+run10,2026-09-28T22:06:03.533,2026-09-28T22:06:03.629,attack,sensitive_file,test-pod-run10,Read sensitive file untrusted,
+run10,2026-09-28T22:06:04.632,2026-09-28T22:06:04.724,attack,suid,test-pod-run10,Set Setuid or Setgid bit,
+run10,2026-09-28T22:06:07.728,2026-09-28T22:06:07.828,attack,rsync,test-pod-apt-run10,Launch Ingress Remote File Copy Tools in Container,
+run10,2026-09-28T22:06:08.831,2026-09-28T22:06:08.939,attack,binary_drop,test-pod-run10,Drop and execute new binary in container,
+run10,2026-09-28T22:06:12.945,2026-09-28T22:06:13.042,attack,shell,test-pod-run10,Terminal shell in container,
+run10,2026-09-28T22:06:54.049,2026-09-28T22:06:54.151,benign,routine_read,test-pod-apt-run10,,admin_inspection
+run10,2026-09-28T22:06:55.156,2026-09-28T22:06:55.334,benign,routine_network,test-pod-apt-run10,,healthcheck
+run10,2026-09-28T22:08:09.340,2026-09-28T22:08:09.438,attack,ssh_info,test-pod-apt-run10,Read ssh information,
+run10,2026-09-28T22:09:36.447,2026-09-28T22:09:36.548,attack,clear_history,test-pod-apt-run10,Delete or rename shell history,
+run10,2026-09-28T22:09:37.551,2026-09-28T22:09:37.632,attack,shell_config,test-pod-apt-run10,Modify Shell Configuration File,
+run10,2026-09-28T22:09:41.636,2026-09-28T22:09:41.729,attack,shell,test-pod-run10,Terminal shell in container,
+run10,2026-09-28T22:09:46.733,2026-09-28T22:09:46.826,attack,write_root,test-pod-run10,Write below root,
+run10,2026-09-28T22:09:49.830,2026-09-28T22:09:49.947,attack,k8s_api,test-pod-apt-run10,Contact K8S API Server From Container,
+run10,2026-09-28T22:10:42.954,2026-09-28T22:10:43.048,attack,shell_config,test-pod-apt-run10,Modify Shell Configuration File,
+run10,2026-09-28T22:10:47.056,2026-09-28T22:10:47.147,attack,write_root,test-pod-run10,Write below root,
+run10,2026-09-28T22:11:57.154,2026-09-28T22:11:57.446,benign,routine_network,test-pod-apt-run10,,healthcheck
+run10,2026-09-28T22:12:00.449,2026-09-28T22:12:00.561,benign,routine_read,test-pod-apt-run10,,admin_inspection
+run10,2026-09-28T22:12:44.571,2026-09-28T22:12:44.666,benign,config_read,test-pod-apt-run10,,admin_inspection
+run10,2026-09-28T22:12:46.668,2026-09-28T22:12:46.767,benign,routine_read,test-pod-apt-run10,,admin_inspection
+run10,2026-09-28T22:13:18.774,2026-09-28T22:13:18.869,attack,shell,test-pod-run10,Terminal shell in container,
+run10,2026-09-28T22:14:56.875,2026-09-28T22:14:56.878,idle,idle_round,,,round_11
+run10,2026-09-28T22:15:34.882,2026-09-28T22:15:34.984,benign,config_read,test-pod-apt-run10,,admin_inspection
+run10,2026-09-28T22:15:39.987,2026-09-28T22:15:40.202,benign,routine_network,test-pod-apt-run10,,healthcheck
+run10,2026-09-28T22:16:47.223,2026-09-28T22:16:47.401,attack,shell,test-pod-run10,Terminal shell in container,
+run10,2026-09-28T22:16:48.405,2026-09-28T22:16:48.571,attack,clear_history,test-pod-apt-run10,Delete or rename shell history,
+run10,2026-09-28T22:18:07.581,2026-09-28T22:18:07.731,benign,config_read,test-pod-apt-run10,,admin_inspection
+run10,2026-09-28T22:18:11.737,2026-09-28T22:18:11.930,benign,routine_network,test-pod-apt-run10,,healthcheck
+run10,2026-09-28T22:18:44.939,2026-09-28T22:18:45.050,attack,clear_history,test-pod-apt-run10,Delete or rename shell history,
+run10,2026-09-28T22:18:49.054,2026-09-28T22:18:49.155,attack,shell_config,test-pod-apt-run10,Modify Shell Configuration File,
+run10,2026-09-28T22:20:12.161,2026-09-28T22:20:12.163,idle,idle_start,,,final_idle
+run10,2026-09-28T22:23:12.167,2026-09-28T22:23:12.168,idle,idle_end,,,final_idle
+run11,2026-09-28T22:24:35.509,2026-09-28T22:24:35.509,meta,pod_created,test-pod-run11,,image:busybox
+run11,2026-09-28T22:24:40.523,2026-09-28T22:24:40.523,meta,pod_created,test-pod-apt-run11,,image:ubuntu
+run11,2026-09-28T22:24:40.526,2026-09-28T22:24:40.528,idle,idle_start,,,initial_idle
+run11,2026-09-28T22:27:40.531,2026-09-28T22:27:40.532,idle,idle_end,,,initial_idle
+run11,2026-09-28T22:27:54.952,2026-09-28T22:28:03.484,benign,pkg_mgmt_fresh,test-pod-apt-run11,Launch Package Management Process in Container,fresh_pod_setup
+run11,2026-09-28T22:28:03.493,2026-09-28T22:28:03.765,benign,routine_network,test-pod-apt-run11,,healthcheck
+run11,2026-09-28T22:28:08.769,2026-09-28T22:28:08.853,benign,config_read,test-pod-apt-run11,,admin_inspection
+run11,2026-09-28T22:29:33.859,2026-09-28T22:29:34.038,benign,routine_network,test-pod-apt-run11,,healthcheck
+run11,2026-09-28T22:30:44.042,2026-09-28T22:30:44.044,idle,idle_round,,,round_3
+run11,2026-09-28T22:31:14.048,2026-09-28T22:31:14.137,attack,write_root,test-pod-run11,Write below root,
+run11,2026-09-28T22:31:20.139,2026-09-28T22:31:20.218,attack,shell,test-pod-run11,Terminal shell in container,
+run11,2026-09-28T22:31:24.221,2026-09-28T22:31:24.310,attack,binary_drop,test-pod-run11,Drop and execute new binary in container,
+run11,2026-09-28T22:31:26.313,2026-09-28T22:31:26.400,attack,shell_config,test-pod-apt-run11,Modify Shell Configuration File,
+run11,2026-09-28T22:31:30.402,2026-09-28T22:31:30.508,attack,suid,test-pod-run11,Set Setuid or Setgid bit,
+run11,2026-09-28T22:31:36.511,2026-09-28T22:31:36.656,attack,k8s_api,test-pod-apt-run11,Contact K8S API Server From Container,
+run11,2026-09-28T22:32:58.664,2026-09-28T22:32:58.770,attack,suid,test-pod-run11,Set Setuid or Setgid bit,
+run11,2026-09-28T22:33:00.773,2026-09-28T22:33:00.876,attack,ssh_info,test-pod-apt-run11,Read ssh information,
+run11,2026-09-28T22:33:02.881,2026-09-28T22:33:02.994,attack,k8s_api,test-pod-apt-run11,Contact K8S API Server From Container,
+run11,2026-09-28T22:34:38.999,2026-09-28T22:34:39.000,idle,idle_round,,,round_6
+run11,2026-09-28T22:36:08.005,2026-09-28T22:36:08.106,benign,config_read,test-pod-apt-run11,,admin_inspection
+run11,2026-09-28T22:36:09.108,2026-09-28T22:36:09.237,benign,routine_read,test-pod-apt-run11,,admin_inspection
+run11,2026-09-28T22:36:15.241,2026-09-28T22:36:15.460,benign,routine_network,test-pod-apt-run11,,healthcheck
+run11,2026-09-28T22:37:15.464,2026-09-28T22:37:15.466,idle,idle_round,,,round_8
+run11,2026-09-28T22:38:00.468,2026-09-28T22:38:00.470,idle,idle_round,,,round_9
+run11,2026-09-28T22:38:51.475,2026-09-28T22:38:51.587,attack,write_root,test-pod-run11,Write below root,
+run11,2026-09-28T22:38:54.589,2026-09-28T22:38:54.697,attack,ssh_info,test-pod-apt-run11,Read ssh information,
+run11,2026-09-28T22:38:55.700,2026-09-28T22:38:55.796,attack,rsync,test-pod-apt-run11,Launch Ingress Remote File Copy Tools in Container,
+run11,2026-09-28T22:38:56.799,2026-09-28T22:38:56.895,attack,env_privesc,test-pod-apt-run11,Potential Local Privilege Escalation via Environment Variables Misuse,
+run11,2026-09-28T22:40:16.904,2026-09-28T22:40:17.015,attack,k8s_api,test-pod-apt-run11,Contact K8S API Server From Container,
+run11,2026-09-28T22:40:18.018,2026-09-28T22:40:18.104,attack,write_root,test-pod-run11,Write below root,
+run11,2026-09-28T22:40:21.111,2026-09-28T22:40:22.352,attack,pkg_mgmt_late,test-pod-apt-run11,Launch Package Management Process in Container,late(pod already old)
+run11,2026-09-28T22:40:25.355,2026-09-28T22:40:25.460,attack,shell,test-pod-run11,Terminal shell in container,
+run11,2026-09-28T22:41:05.469,2026-09-28T22:41:05.569,benign,config_read,test-pod-apt-run11,,admin_inspection
+run11,2026-09-28T22:42:34.578,2026-09-28T22:42:34.741,attack,suid,test-pod-run11,Set Setuid or Setgid bit,
+run11,2026-09-28T22:42:37.745,2026-09-28T22:42:37.843,attack,sensitive_file,test-pod-run11,Read sensitive file untrusted,
+run11,2026-09-28T22:42:42.847,2026-09-28T22:42:42.943,attack,shell,test-pod-run11,Terminal shell in container,
+run11,2026-09-28T22:42:48.947,2026-09-28T22:42:49.044,attack,ssh_info,test-pod-apt-run11,Read ssh information,
+run11,2026-09-28T22:42:54.049,2026-09-28T22:42:54.146,attack,env_privesc,test-pod-apt-run11,Potential Local Privilege Escalation via Environment Variables Misuse,
+run11,2026-09-28T22:42:57.150,2026-09-28T22:42:57.249,attack,shell_config,test-pod-apt-run11,Modify Shell Configuration File,
+run11,2026-09-28T22:44:27.256,2026-09-28T22:44:27.258,idle,idle_round,,,round_14
+run11,2026-09-28T22:45:29.263,2026-09-28T22:45:29.368,attack,suid,test-pod-run11,Set Setuid or Setgid bit,
+run11,2026-09-28T22:46:36.374,2026-09-28T22:46:36.376,idle,idle_start,,,final_idle
+run11,2026-09-28T22:49:36.381,2026-09-28T22:49:36.383,idle,idle_end,,,final_idle
+run12,2026-09-29T10:58:29.187,2026-09-29T10:58:29.187,meta,pod_created,test-pod-run12,,image:busybox
+run12,2026-09-29T10:58:34.202,2026-09-29T10:58:34.202,meta,pod_created,test-pod-apt-run12,,image:ubuntu
+run12,2026-09-29T10:58:34.205,2026-09-29T10:58:34.206,idle,idle_start,,,initial_idle
+run12,2026-09-29T11:01:34.209,2026-09-29T11:01:34.210,idle,idle_end,,,initial_idle
+run12,2026-09-29T11:01:43.335,2026-09-29T11:01:50.974,benign,pkg_mgmt_fresh,test-pod-apt-run12,Launch Package Management Process in Container,fresh_pod_setup
+run12,2026-09-29T11:01:50.982,2026-09-29T11:01:51.086,attack,clear_history,test-pod-apt-run12,Delete or rename shell history,
+run12,2026-09-29T11:01:52.089,2026-09-29T11:01:52.189,attack,shell_config,test-pod-apt-run12,Modify Shell Configuration File,
+run12,2026-09-29T11:01:56.195,2026-09-29T11:01:56.297,attack,sensitive_file,test-pod-run12,Read sensitive file untrusted,
+run12,2026-09-29T11:03:35.305,2026-09-29T11:03:35.468,attack,suid,test-pod-run12,Set Setuid or Setgid bit,
+run12,2026-09-29T11:03:41.473,2026-09-29T11:03:41.572,attack,sensitive_file,test-pod-run12,Read sensitive file untrusted,
+run12,2026-09-29T11:03:42.575,2026-09-29T11:03:42.683,attack,write_root,test-pod-run12,Write below root,
+run12,2026-09-29T11:03:46.688,2026-09-29T11:03:46.803,attack,env_privesc,test-pod-apt-run12,Potential Local Privilege Escalation via Environment Variables Misuse,
+run12,2026-09-29T11:03:50.807,2026-09-29T11:03:51.946,attack,pkg_mgmt_late,test-pod-apt-run12,Launch Package Management Process in Container,late(pod already old)
+run12,2026-09-29T11:04:56.954,2026-09-29T11:04:56.958,idle,idle_round,,,round_3
+run12,2026-09-29T11:06:16.967,2026-09-29T11:06:17.077,attack,env_privesc,test-pod-apt-run12,Potential Local Privilege Escalation via Environment Variables Misuse,
+run12,2026-09-29T11:06:18.080,2026-09-29T11:06:18.180,attack,ssh_info,test-pod-apt-run12,Read ssh information,
+run12,2026-09-29T11:07:50.186,2026-09-29T11:07:50.273,attack,write_root,test-pod-run12,Write below root,
+run12,2026-09-29T11:08:51.281,2026-09-29T11:08:51.283,idle,idle_round,,,round_6
+run12,2026-09-29T11:10:05.286,2026-09-29T11:10:05.287,idle,idle_round,,,round_7
+run12,2026-09-29T11:11:12.293,2026-09-29T11:11:12.439,attack,shell_config,test-pod-apt-run12,Modify Shell Configuration File,
+run12,2026-09-29T11:11:47.447,2026-09-29T11:11:47.664,attack,write_root,test-pod-run12,Write below root,
+run12,2026-09-29T11:11:52.670,2026-09-29T11:11:52.784,attack,shell_config,test-pod-apt-run12,Modify Shell Configuration File,
+run12,2026-09-29T11:11:56.809,2026-09-29T11:11:57.213,attack,k8s_api,test-pod-apt-run12,Contact K8S API Server From Container,
+run12,2026-09-29T11:13:04.229,2026-09-29T11:13:04.581,benign,routine_network,test-pod-apt-run12,,healthcheck
+run12,2026-09-29T11:13:08.587,2026-09-29T11:13:09.049,benign,config_read,test-pod-apt-run12,,admin_inspection
+run12,2026-09-29T11:13:15.060,2026-09-29T11:13:15.155,benign,routine_read,test-pod-apt-run12,,admin_inspection
+run12,2026-09-29T11:14:40.166,2026-09-29T11:14:40.310,attack,env_privesc,test-pod-apt-run12,Potential Local Privilege Escalation via Environment Variables Misuse,
+run12,2026-09-29T11:14:46.314,2026-09-29T11:14:46.423,attack,suid,test-pod-run12,Set Setuid or Setgid bit,
+run12,2026-09-29T11:14:51.431,2026-09-29T11:14:53.614,attack,pkg_mgmt_late,test-pod-apt-run12,Launch Package Management Process in Container,late(pod already old)
+run12,2026-09-29T11:16:00.623,2026-09-29T11:16:00.720,attack,write_root,test-pod-run12,Write below root,
+run12,2026-09-29T11:16:01.730,2026-09-29T11:16:01.860,attack,binary_drop,test-pod-run12,Drop and execute new binary in container,
+run12,2026-09-29T11:16:02.866,2026-09-29T11:16:03.025,attack,k8s_api,test-pod-apt-run12,Contact K8S API Server From Container,
+run12,2026-09-29T11:16:05.031,2026-09-29T11:16:05.143,attack,ssh_info,test-pod-apt-run12,Read ssh information,
+run12,2026-09-29T11:17:49.158,2026-09-29T11:17:49.312,attack,k8s_api,test-pod-apt-run12,Contact K8S API Server From Container,
+run12,2026-09-29T11:17:55.316,2026-09-29T11:17:55.497,attack,ssh_info,test-pod-apt-run12,Read ssh information,
+run12,2026-09-29T11:17:56.501,2026-09-29T11:17:58.216,attack,pkg_mgmt_late,test-pod-apt-run12,Launch Package Management Process in Container,late(pod already old)
+run12,2026-09-29T11:18:03.222,2026-09-29T11:18:03.359,attack,env_privesc,test-pod-apt-run12,Potential Local Privilege Escalation via Environment Variables Misuse,
+run12,2026-09-29T11:18:06.365,2026-09-29T11:18:06.470,attack,shell,test-pod-run12,Terminal shell in container,
+run12,2026-09-29T11:18:08.474,2026-09-29T11:18:08.632,attack,clear_history,test-pod-apt-run12,Delete or rename shell history,
+run12,2026-09-29T11:18:13.640,2026-09-29T11:18:13.748,attack,write_root,test-pod-run12,Write below root,
+run12,2026-09-29T11:18:14.755,2026-09-29T11:18:14.855,attack,rsync,test-pod-apt-run12,Launch Ingress Remote File Copy Tools in Container,
+run12,2026-09-29T11:19:04.862,2026-09-29T11:19:04.866,idle,idle_round,,,round_14
+run12,2026-09-29T11:19:36.875,2026-09-29T11:19:37.115,benign,routine_read,test-pod-apt-run12,,admin_inspection
+run12,2026-09-29T11:19:38.122,2026-09-29T11:19:38.274,benign,config_read,test-pod-apt-run12,,admin_inspection
+run12,2026-09-29T11:21:07.283,2026-09-29T11:21:07.284,idle,idle_start,,,final_idle
+run12,2026-09-29T11:24:07.286,2026-09-29T11:24:07.288,idle,idle_end,,,final_idle
+run13,2026-09-29T11:27:23.085,2026-09-29T11:27:23.085,meta,pod_created,test-pod-run13,,image:busybox
+run13,2026-09-29T11:27:28.086,2026-09-29T11:27:28.086,meta,pod_created,test-pod-apt-run13,,image:ubuntu
+run13,2026-09-29T11:27:28.088,2026-09-29T11:27:28.090,idle,idle_start,,,initial_idle
+run13,2026-09-29T11:30:28.094,2026-09-29T11:30:28.095,idle,idle_end,,,initial_idle
+run13,2026-09-29T11:30:36.144,2026-09-29T11:30:43.610,benign,pkg_mgmt_fresh,test-pod-apt-run13,Launch Package Management Process in Container,fresh_pod_setup
+run13,2026-09-29T11:30:43.616,2026-09-29T11:30:45.212,attack,pkg_mgmt_late,test-pod-apt-run13,Launch Package Management Process in Container,late(pod already old)
+run13,2026-09-29T11:30:51.215,2026-09-29T11:30:51.344,attack,k8s_api,test-pod-apt-run13,Contact K8S API Server From Container,
+run13,2026-09-29T11:30:56.347,2026-09-29T11:30:56.439,attack,shell_config,test-pod-apt-run13,Modify Shell Configuration File,
+run13,2026-09-29T11:31:02.447,2026-09-29T11:31:02.645,attack,binary_drop,test-pod-run13,Drop and execute new binary in container,
+run13,2026-09-29T11:32:37.656,2026-09-29T11:32:37.658,idle,idle_round,,,round_2
+run13,2026-09-29T11:34:02.665,2026-09-29T11:34:02.668,idle,idle_round,,,round_3
+run13,2026-09-29T11:35:41.673,2026-09-29T11:35:41.791,attack,sensitive_file,test-pod-run13,Read sensitive file untrusted,
+run13,2026-09-29T11:35:42.797,2026-09-29T11:35:42.965,attack,k8s_api,test-pod-apt-run13,Contact K8S API Server From Container,
+run13,2026-09-29T11:35:44.974,2026-09-29T11:35:45.064,attack,ssh_info,test-pod-apt-run13,Read ssh information,
+run13,2026-09-29T11:35:51.067,2026-09-29T11:35:51.170,attack,binary_drop,test-pod-run13,Drop and execute new binary in container,
+run13,2026-09-29T11:36:24.180,2026-09-29T11:36:24.305,attack,env_privesc,test-pod-apt-run13,Potential Local Privilege Escalation via Environment Variables Misuse,
+run13,2026-09-29T11:36:25.311,2026-09-29T11:36:25.491,attack,clear_history,test-pod-apt-run13,Delete or rename shell history,
+run13,2026-09-29T11:36:59.508,2026-09-29T11:36:59.610,attack,sensitive_file,test-pod-run13,Read sensitive file untrusted,
+run13,2026-09-29T11:37:02.612,2026-09-29T11:37:02.722,attack,clear_history,test-pod-apt-run13,Delete or rename shell history,
+run13,2026-09-29T11:37:03.730,2026-09-29T11:37:03.854,attack,shell_config,test-pod-apt-run13,Modify Shell Configuration File,
+run13,2026-09-29T11:38:35.861,2026-09-29T11:38:35.969,attack,write_root,test-pod-run13,Write below root,
+run13,2026-09-29T11:38:38.976,2026-09-29T11:38:39.085,attack,shell,test-pod-run13,Terminal shell in container,
+run13,2026-09-29T11:38:45.088,2026-09-29T11:38:45.184,attack,rsync,test-pod-apt-run13,Launch Ingress Remote File Copy Tools in Container,
+run13,2026-09-29T11:38:48.188,2026-09-29T11:38:48.289,attack,suid,test-pod-run13,Set Setuid or Setgid bit,
+run13,2026-09-29T11:38:49.292,2026-09-29T11:38:49.394,attack,env_privesc,test-pod-apt-run13,Potential Local Privilege Escalation via Environment Variables Misuse,
+run13,2026-09-29T11:38:50.397,2026-09-29T11:38:50.528,attack,clear_history,test-pod-apt-run13,Delete or rename shell history,
+run13,2026-09-29T11:39:24.538,2026-09-29T11:39:24.655,attack,ssh_info,test-pod-apt-run13,Read ssh information,
+run13,2026-09-29T11:39:29.658,2026-09-29T11:39:29.749,attack,write_root,test-pod-run13,Write below root,
+run13,2026-09-29T11:39:30.753,2026-09-29T11:39:30.853,attack,sensitive_file,test-pod-run13,Read sensitive file untrusted,
+run13,2026-09-29T11:39:33.858,2026-09-29T11:39:33.970,attack,k8s_api,test-pod-apt-run13,Contact K8S API Server From Container,
+run13,2026-09-29T11:39:37.978,2026-09-29T11:39:39.134,attack,pkg_mgmt_late,test-pod-apt-run13,Launch Package Management Process in Container,late(pod already old)
+run13,2026-09-29T11:39:43.138,2026-09-29T11:39:43.243,attack,binary_drop,test-pod-run13,Drop and execute new binary in container,
+run13,2026-09-29T11:40:25.248,2026-09-29T11:40:25.249,idle,idle_round,,,round_9
+run13,2026-09-29T11:41:58.253,2026-09-29T11:41:58.346,benign,config_read,test-pod-apt-run13,,admin_inspection
+run13,2026-09-29T11:42:01.349,2026-09-29T11:42:01.550,benign,routine_network,test-pod-apt-run13,,healthcheck
+run13,2026-09-29T11:42:02.553,2026-09-29T11:42:02.641,benign,routine_read,test-pod-apt-run13,,admin_inspection
+run13,2026-09-29T11:42:52.649,2026-09-29T11:42:52.766,attack,sensitive_file,test-pod-run13,Read sensitive file untrusted,
+run13,2026-09-29T11:42:58.769,2026-09-29T11:42:58.870,attack,clear_history,test-pod-apt-run13,Delete or rename shell history,
+run13,2026-09-29T11:42:59.876,2026-09-29T11:43:01.486,attack,pkg_mgmt_late,test-pod-apt-run13,Launch Package Management Process in Container,late(pod already old)
+run13,2026-09-29T11:43:05.491,2026-09-29T11:43:05.592,attack,ssh_info,test-pod-apt-run13,Read ssh information,
+run13,2026-09-29T11:43:09.595,2026-09-29T11:43:09.697,attack,suid,test-pod-run13,Set Setuid or Setgid bit,
+run13,2026-09-29T11:43:14.708,2026-09-29T11:43:14.862,attack,binary_drop,test-pod-run13,Drop and execute new binary in container,
+run13,2026-09-29T11:43:17.867,2026-09-29T11:43:17.970,attack,shell,test-pod-run13,Terminal shell in container,
+run13,2026-09-29T11:43:20.973,2026-09-29T11:43:21.097,attack,env_privesc,test-pod-apt-run13,Potential Local Privilege Escalation via Environment Variables Misuse,
+run13,2026-09-29T11:43:24.100,2026-09-29T11:43:24.202,attack,rsync,test-pod-apt-run13,Launch Ingress Remote File Copy Tools in Container,
+run13,2026-09-29T11:44:54.213,2026-09-29T11:44:55.394,attack,pkg_mgmt_late,test-pod-apt-run13,Launch Package Management Process in Container,late(pod already old)
+run13,2026-09-29T11:44:59.397,2026-09-29T11:44:59.520,attack,write_root,test-pod-run13,Write below root,
+run13,2026-09-29T11:45:05.524,2026-09-29T11:45:05.622,attack,shell_config,test-pod-apt-run13,Modify Shell Configuration File,
+run13,2026-09-29T11:45:07.629,2026-09-29T11:45:07.721,attack,shell,test-pod-run13,Terminal shell in container,
+run13,2026-09-29T11:45:12.724,2026-09-29T11:45:12.821,attack,sensitive_file,test-pod-run13,Read sensitive file untrusted,
+run13,2026-09-29T11:45:13.833,2026-09-29T11:45:13.929,attack,ssh_info,test-pod-apt-run13,Read ssh information,
+run13,2026-09-29T11:46:38.937,2026-09-29T11:46:39.050,attack,ssh_info,test-pod-apt-run13,Read ssh information,
+run13,2026-09-29T11:47:53.055,2026-09-29T11:47:53.077,idle,idle_round,,,round_14
+run13,2026-09-29T11:48:26.083,2026-09-29T11:48:26.207,attack,env_privesc,test-pod-apt-run13,Potential Local Privilege Escalation via Environment Variables Misuse,
+run13,2026-09-29T11:48:28.211,2026-09-29T11:48:28.309,attack,sensitive_file,test-pod-run13,Read sensitive file untrusted,
+run13,2026-09-29T11:48:31.317,2026-09-29T11:48:31.408,attack,ssh_info,test-pod-apt-run13,Read ssh information,
+run13,2026-09-29T11:48:32.413,2026-09-29T11:48:34.006,attack,pkg_mgmt_late,test-pod-apt-run13,Launch Package Management Process in Container,late(pod already old)
+run13,2026-09-29T11:48:35.012,2026-09-29T11:48:35.136,attack,binary_drop,test-pod-run13,Drop and execute new binary in container,
+run13,2026-09-29T11:48:40.141,2026-09-29T11:48:40.230,attack,rsync,test-pod-apt-run13,Launch Ingress Remote File Copy Tools in Container,
+run13,2026-09-29T11:48:46.235,2026-09-29T11:48:46.327,attack,clear_history,test-pod-apt-run13,Delete or rename shell history,
+run13,2026-09-29T11:48:50.332,2026-09-29T11:48:50.440,attack,shell_config,test-pod-apt-run13,Modify Shell Configuration File,
+run13,2026-09-29T11:50:00.446,2026-09-29T11:50:00.448,idle,idle_start,,,final_idle
+run13,2026-09-29T11:53:00.451,2026-09-29T11:53:00.452,idle,idle_end,,,final_idle
+run14,2026-09-29T11:54:21.943,2026-09-29T11:54:21.943,meta,pod_created,test-pod-run14,,image:busybox
+run14,2026-09-29T11:54:25.952,2026-09-29T11:54:25.952,meta,pod_created,test-pod-apt-run14,,image:ubuntu
+run14,2026-09-29T11:54:25.954,2026-09-29T11:54:25.955,idle,idle_start,,,initial_idle
+run14,2026-09-29T11:57:25.960,2026-09-29T11:57:25.961,idle,idle_end,,,initial_idle
+run14,2026-09-29T11:57:34.627,2026-09-29T11:57:43.102,benign,pkg_mgmt_fresh,test-pod-apt-run14,Launch Package Management Process in Container,fresh_pod_setup
+run14,2026-09-29T11:57:43.107,2026-09-29T11:57:43.214,attack,env_privesc,test-pod-apt-run14,Potential Local Privilege Escalation via Environment Variables Misuse,
+run14,2026-09-29T11:57:48.219,2026-09-29T11:57:48.333,attack,shell_config,test-pod-apt-run14,Modify Shell Configuration File,
+run14,2026-09-29T11:57:51.347,2026-09-29T11:57:51.436,attack,rsync,test-pod-apt-run14,Launch Ingress Remote File Copy Tools in Container,
+run14,2026-09-29T11:57:52.440,2026-09-29T11:57:52.543,attack,clear_history,test-pod-apt-run14,Delete or rename shell history,
+run14,2026-09-29T11:57:56.550,2026-09-29T11:57:56.653,attack,suid,test-pod-run14,Set Setuid or Setgid bit,
+run14,2026-09-29T11:58:46.659,2026-09-29T11:58:46.805,attack,k8s_api,test-pod-apt-run14,Contact K8S API Server From Container,
+run14,2026-09-29T11:58:48.812,2026-09-29T11:58:48.912,attack,sensitive_file,test-pod-run14,Read sensitive file untrusted,
+run14,2026-09-29T11:58:53.916,2026-09-29T11:58:54.011,attack,clear_history,test-pod-apt-run14,Delete or rename shell history,
+run14,2026-09-29T11:58:56.016,2026-09-29T11:58:56.113,attack,write_root,test-pod-run14,Write below root,
+run14,2026-09-29T11:59:54.122,2026-09-29T11:59:55.216,attack,pkg_mgmt_late,test-pod-apt-run14,Launch Package Management Process in Container,late(pod already old)
+run14,2026-09-29T11:59:58.219,2026-09-29T11:59:58.364,attack,binary_drop,test-pod-run14,Drop and execute new binary in container,
+run14,2026-09-29T12:00:01.368,2026-09-29T12:00:01.471,attack,suid,test-pod-run14,Set Setuid or Setgid bit,
+run14,2026-09-29T12:00:05.474,2026-09-29T12:00:05.593,attack,write_root,test-pod-run14,Write below root,
+run14,2026-09-29T12:00:11.595,2026-09-29T12:00:11.697,attack,rsync,test-pod-apt-run14,Launch Ingress Remote File Copy Tools in Container,
+run14,2026-09-29T12:00:13.700,2026-09-29T12:00:13.809,attack,env_privesc,test-pod-apt-run14,Potential Local Privilege Escalation via Environment Variables Misuse,
+run14,2026-09-29T12:00:56.815,2026-09-29T12:00:56.912,attack,write_root,test-pod-run14,Write below root,
+run14,2026-09-29T12:01:36.967,2026-09-29T12:01:37.180,attack,k8s_api,test-pod-apt-run14,Contact K8S API Server From Container,
+run14,2026-09-29T12:02:17.194,2026-09-29T12:02:17.305,attack,ssh_info,test-pod-apt-run14,Read ssh information,
+run14,2026-09-29T12:02:23.308,2026-09-29T12:02:23.540,attack,env_privesc,test-pod-apt-run14,Potential Local Privilege Escalation via Environment Variables Misuse,
+run14,2026-09-29T12:02:26.548,2026-09-29T12:02:26.671,attack,binary_drop,test-pod-run14,Drop and execute new binary in container,
+run14,2026-09-29T12:02:28.677,2026-09-29T12:02:28.784,attack,shell_config,test-pod-apt-run14,Modify Shell Configuration File,
+run14,2026-09-29T12:02:29.804,2026-09-29T12:02:29.915,attack,sensitive_file,test-pod-run14,Read sensitive file untrusted,
+run14,2026-09-29T12:02:31.919,2026-09-29T12:02:32.037,attack,clear_history,test-pod-apt-run14,Delete or rename shell history,
+run14,2026-09-29T12:03:55.048,2026-09-29T12:03:55.148,benign,routine_read,test-pod-apt-run14,,admin_inspection
+run14,2026-09-29T12:03:56.151,2026-09-29T12:03:56.457,benign,routine_network,test-pod-apt-run14,,healthcheck
+run14,2026-09-29T12:05:02.467,2026-09-29T12:05:02.575,attack,clear_history,test-pod-apt-run14,Delete or rename shell history,
+run14,2026-09-29T12:05:06.579,2026-09-29T12:05:06.721,attack,k8s_api,test-pod-apt-run14,Contact K8S API Server From Container,
+run14,2026-09-29T12:05:07.730,2026-09-29T12:05:07.832,attack,ssh_info,test-pod-apt-run14,Read ssh information,
+run14,2026-09-29T12:05:12.838,2026-09-29T12:05:12.958,attack,env_privesc,test-pod-apt-run14,Potential Local Privilege Escalation via Environment Variables Misuse,
+run14,2026-09-29T12:06:47.964,2026-09-29T12:06:47.965,idle,idle_round,,,round_9
+run14,2026-09-29T12:08:27.971,2026-09-29T12:08:28.142,attack,clear_history,test-pod-apt-run14,Delete or rename shell history,
+run14,2026-09-29T12:08:31.147,2026-09-29T12:08:31.319,attack,binary_drop,test-pod-run14,Drop and execute new binary in container,
+run14,2026-09-29T12:08:37.331,2026-09-29T12:08:37.446,attack,sensitive_file,test-pod-run14,Read sensitive file untrusted,
+run14,2026-09-29T12:08:40.449,2026-09-29T12:08:41.659,attack,pkg_mgmt_late,test-pod-apt-run14,Launch Package Management Process in Container,late(pod already old)
+run14,2026-09-29T12:08:46.663,2026-09-29T12:08:46.782,attack,env_privesc,test-pod-apt-run14,Potential Local Privilege Escalation via Environment Variables Misuse,
+run14,2026-09-29T12:10:02.791,2026-09-29T12:10:02.894,attack,write_root,test-pod-run14,Write below root,
+run14,2026-09-29T12:10:03.903,2026-09-29T12:10:04.015,attack,clear_history,test-pod-apt-run14,Delete or rename shell history,
+run14,2026-09-29T12:11:04.029,2026-09-29T12:11:04.128,attack,suid,test-pod-run14,Set Setuid or Setgid bit,
+run14,2026-09-29T12:11:05.133,2026-09-29T12:11:05.262,attack,rsync,test-pod-apt-run14,Launch Ingress Remote File Copy Tools in Container,
+run14,2026-09-29T12:11:06.265,2026-09-29T12:11:06.361,attack,shell,test-pod-run14,Terminal shell in container,
+run14,2026-09-29T12:11:10.365,2026-09-29T12:11:10.491,attack,k8s_api,test-pod-apt-run14,Contact K8S API Server From Container,
+run14,2026-09-29T12:11:12.497,2026-09-29T12:11:12.615,attack,shell_config,test-pod-apt-run14,Modify Shell Configuration File,
+run14,2026-09-29T12:11:15.620,2026-09-29T12:11:16.952,attack,pkg_mgmt_late,test-pod-apt-run14,Launch Package Management Process in Container,late(pod already old)
+run14,2026-09-29T12:12:38.962,2026-09-29T12:12:39.089,attack,shell,test-pod-run14,Terminal shell in container,
+run14,2026-09-29T12:13:34.099,2026-09-29T12:13:34.214,benign,config_read,test-pod-apt-run14,,admin_inspection
+run14,2026-09-29T12:13:36.220,2026-09-29T12:13:36.349,benign,routine_read,test-pod-apt-run14,,admin_inspection
+run14,2026-09-29T12:14:41.356,2026-09-29T12:14:41.482,attack,binary_drop,test-pod-run14,Drop and execute new binary in container,
+run14,2026-09-29T12:14:44.489,2026-09-29T12:14:44.639,attack,sensitive_file,test-pod-run14,Read sensitive file untrusted,
+run14,2026-09-29T12:14:45.644,2026-09-29T12:14:45.769,attack,shell,test-pod-run14,Terminal shell in container,
+run14,2026-09-29T12:14:46.772,2026-09-29T12:14:46.902,attack,suid,test-pod-run14,Set Setuid or Setgid bit,
+run14,2026-09-29T12:16:16.945,2026-09-29T12:16:16.948,idle,idle_start,,,final_idle
+run14,2026-09-29T12:19:16.951,2026-09-29T12:19:16.952,idle,idle_end,,,final_idle
+run15,2026-09-29T12:22:46.598,2026-09-29T12:22:46.598,meta,pod_created,test-pod-run15,,image:busybox
+run15,2026-09-29T12:22:51.613,2026-09-29T12:22:51.613,meta,pod_created,test-pod-apt-run15,,image:ubuntu
+run15,2026-09-29T12:22:51.615,2026-09-29T12:22:51.616,idle,idle_start,,,initial_idle
+run15,2026-09-29T12:25:51.619,2026-09-29T12:25:51.620,idle,idle_end,,,initial_idle
+run15,2026-09-29T12:26:01.463,2026-09-29T12:26:10.851,benign,pkg_mgmt_fresh,test-pod-apt-run15,Launch Package Management Process in Container,fresh_pod_setup
+run15,2026-09-29T12:26:10.858,2026-09-29T12:26:10.968,attack,binary_drop,test-pod-run15,Drop and execute new binary in container,
+run15,2026-09-29T12:26:49.977,2026-09-29T12:26:50.186,benign,routine_network,test-pod-apt-run15,,healthcheck
+run15,2026-09-29T12:26:53.191,2026-09-29T12:26:53.287,benign,config_read,test-pod-apt-run15,,admin_inspection
+run15,2026-09-29T12:26:54.289,2026-09-29T12:26:54.385,benign,routine_read,test-pod-apt-run15,,admin_inspection
+run15,2026-09-29T12:28:02.396,2026-09-29T12:28:02.510,benign,config_read,test-pod-apt-run15,,admin_inspection
+run15,2026-09-29T12:28:06.516,2026-09-29T12:28:06.752,benign,routine_network,test-pod-apt-run15,,healthcheck
+run15,2026-09-29T12:29:16.760,2026-09-29T12:29:16.876,attack,sensitive_file,test-pod-run15,Read sensitive file untrusted,
+run15,2026-09-29T12:29:20.879,2026-09-29T12:29:21.013,attack,binary_drop,test-pod-run15,Drop and execute new binary in container,
+run15,2026-09-29T12:29:23.022,2026-09-29T12:29:23.186,attack,clear_history,test-pod-apt-run15,Delete or rename shell history,
+run15,2026-09-29T12:29:28.202,2026-09-29T12:29:28.359,attack,k8s_api,test-pod-apt-run15,Contact K8S API Server From Container,
+run15,2026-09-29T12:29:30.363,2026-09-29T12:29:30.471,attack,shell,test-pod-run15,Terminal shell in container,
+run15,2026-09-29T12:29:31.477,2026-09-29T12:29:31.614,attack,shell_config,test-pod-apt-run15,Modify Shell Configuration File,
+run15,2026-09-29T12:29:32.621,2026-09-29T12:29:32.758,attack,rsync,test-pod-apt-run15,Launch Ingress Remote File Copy Tools in Container,
+run15,2026-09-29T12:31:10.766,2026-09-29T12:31:10.978,benign,routine_network,test-pod-apt-run15,,healthcheck
+run15,2026-09-29T12:31:54.988,2026-09-29T12:31:55.083,attack,rsync,test-pod-apt-run15,Launch Ingress Remote File Copy Tools in Container,
+run15,2026-09-29T12:31:59.087,2026-09-29T12:31:59.215,attack,ssh_info,test-pod-apt-run15,Read ssh information,
+run15,2026-09-29T12:32:03.217,2026-09-29T12:32:04.483,attack,pkg_mgmt_late,test-pod-apt-run15,Launch Package Management Process in Container,late(pod already old)
+run15,2026-09-29T12:32:06.486,2026-09-29T12:32:06.608,attack,sensitive_file,test-pod-run15,Read sensitive file untrusted,
+run15,2026-09-29T12:32:08.612,2026-09-29T12:32:08.760,attack,k8s_api,test-pod-apt-run15,Contact K8S API Server From Container,
+run15,2026-09-29T12:33:22.766,2026-09-29T12:33:22.890,attack,sensitive_file,test-pod-run15,Read sensitive file untrusted,
+run15,2026-09-29T12:33:24.894,2026-09-29T12:33:26.344,attack,pkg_mgmt_late,test-pod-apt-run15,Launch Package Management Process in Container,late(pod already old)
+run15,2026-09-29T12:33:31.348,2026-09-29T12:33:31.468,attack,env_privesc,test-pod-apt-run15,Potential Local Privilege Escalation via Environment Variables Misuse,
+run15,2026-09-29T12:33:32.472,2026-09-29T12:33:32.586,attack,suid,test-pod-run15,Set Setuid or Setgid bit,
+run15,2026-09-29T12:33:35.589,2026-09-29T12:33:35.744,attack,k8s_api,test-pod-apt-run15,Contact K8S API Server From Container,
+run15,2026-09-29T12:33:39.749,2026-09-29T12:33:39.886,attack,write_root,test-pod-run15,Write below root,
+run15,2026-09-29T12:35:20.894,2026-09-29T12:35:20.898,idle,idle_round,,,round_8
+run15,2026-09-29T12:35:51.905,2026-09-29T12:35:52.010,attack,shell,test-pod-run15,Terminal shell in container,
+run15,2026-09-29T12:35:53.013,2026-09-29T12:35:53.203,attack,env_privesc,test-pod-apt-run15,Potential Local Privilege Escalation via Environment Variables Misuse,
+run15,2026-09-29T12:35:57.209,2026-09-29T12:35:57.316,attack,rsync,test-pod-apt-run15,Launch Ingress Remote File Copy Tools in Container,
+run15,2026-09-29T12:35:58.322,2026-09-29T12:35:58.432,attack,binary_drop,test-pod-run15,Drop and execute new binary in container,
+run15,2026-09-29T12:35:59.434,2026-09-29T12:35:59.543,attack,clear_history,test-pod-apt-run15,Delete or rename shell history,
+run15,2026-09-29T12:36:05.549,2026-09-29T12:36:05.675,attack,sensitive_file,test-pod-run15,Read sensitive file untrusted,
+run15,2026-09-29T12:36:09.681,2026-09-29T12:36:10.971,attack,pkg_mgmt_late,test-pod-apt-run15,Launch Package Management Process in Container,late(pod already old)
+run15,2026-09-29T12:37:14.980,2026-09-29T12:37:15.090,attack,write_root,test-pod-run15,Write below root,
+run15,2026-09-29T12:37:19.094,2026-09-29T12:37:19.252,attack,k8s_api,test-pod-apt-run15,Contact K8S API Server From Container,
+run15,2026-09-29T12:37:25.256,2026-09-29T12:37:25.402,attack,suid,test-pod-run15,Set Setuid or Setgid bit,
+run15,2026-09-29T12:37:28.408,2026-09-29T12:37:28.523,attack,sensitive_file,test-pod-run15,Read sensitive file untrusted,
+run15,2026-09-29T12:37:32.537,2026-09-29T12:37:32.695,attack,shell_config,test-pod-apt-run15,Modify Shell Configuration File,
+run15,2026-09-29T12:37:33.703,2026-09-29T12:37:33.819,attack,ssh_info,test-pod-apt-run15,Read ssh information,
+run15,2026-09-29T12:38:38.837,2026-09-29T12:38:38.967,attack,ssh_info,test-pod-apt-run15,Read ssh information,
+run15,2026-09-29T12:38:39.972,2026-09-29T12:38:40.097,attack,shell_config,test-pod-apt-run15,Modify Shell Configuration File,
+run15,2026-09-29T12:38:46.101,2026-09-29T12:38:46.262,attack,sensitive_file,test-pod-run15,Read sensitive file untrusted,
+run15,2026-09-29T12:38:51.267,2026-09-29T12:38:51.361,attack,shell,test-pod-run15,Terminal shell in container,
+run15,2026-09-29T12:38:56.364,2026-09-29T12:38:56.471,attack,suid,test-pod-run15,Set Setuid or Setgid bit,
+run15,2026-09-29T12:40:38.476,2026-09-29T12:40:38.577,attack,suid,test-pod-run15,Set Setuid or Setgid bit,
+run15,2026-09-29T12:40:43.582,2026-09-29T12:40:43.681,attack,ssh_info,test-pod-apt-run15,Read ssh information,
+run15,2026-09-29T12:40:48.684,2026-09-29T12:40:48.801,attack,env_privesc,test-pod-apt-run15,Potential Local Privilege Escalation via Environment Variables Misuse,
+run15,2026-09-29T12:40:53.805,2026-09-29T12:40:53.901,attack,shell,test-pod-run15,Terminal shell in container,
+run15,2026-09-29T12:42:36.950,2026-09-29T12:42:37.069,benign,routine_read,test-pod-apt-run15,,admin_inspection
+run15,2026-09-29T12:42:42.076,2026-09-29T12:42:42.387,benign,routine_network,test-pod-apt-run15,,healthcheck
+run15,2026-09-29T12:42:45.441,2026-09-29T12:42:45.558,benign,config_read,test-pod-apt-run15,,admin_inspection
+run15,2026-09-29T12:43:46.566,2026-09-29T12:43:46.672,attack,shell_config,test-pod-apt-run15,Modify Shell Configuration File,
+run15,2026-09-29T12:43:51.676,2026-09-29T12:43:51.810,attack,k8s_api,test-pod-apt-run15,Contact K8S API Server From Container,
+run15,2026-09-29T12:43:52.815,2026-09-29T12:43:52.912,attack,sensitive_file,test-pod-run15,Read sensitive file untrusted,
+run15,2026-09-29T12:45:03.922,2026-09-29T12:45:04.110,benign,routine_network,test-pod-apt-run15,,healthcheck
+run15,2026-09-29T12:45:07.113,2026-09-29T12:45:07.202,benign,config_read,test-pod-apt-run15,,admin_inspection
+run15,2026-09-29T12:46:36.221,2026-09-29T12:46:36.230,idle,idle_start,,,final_idle
+run15,2026-09-29T12:49:36.233,2026-09-29T12:49:36.235,idle,idle_end,,,final_idle
+run16,2026-09-29T12:55:23.070,2026-09-29T12:55:23.070,meta,pod_created,test-pod-run16,,image:busybox
+run16,2026-09-29T12:55:28.026,2026-09-29T12:55:28.026,meta,pod_created,test-pod-apt-run16,,image:ubuntu
+run16,2026-09-29T12:55:28.031,2026-09-29T12:55:28.035,idle,idle_start,,,initial_idle
+run16,2026-09-29T12:58:28.037,2026-09-29T12:58:28.040,idle,idle_end,,,initial_idle
+run16,2026-09-29T12:58:36.806,2026-09-29T12:58:56.066,benign,pkg_mgmt_fresh,test-pod-apt-run16,Launch Package Management Process in Container,fresh_pod_setup
+run16,2026-09-29T12:58:56.071,2026-09-29T12:58:56.211,attack,clear_history,test-pod-apt-run16,Delete or rename shell history,
+run16,2026-09-29T12:58:58.215,2026-09-29T12:58:58.305,attack,shell,test-pod-run16,Terminal shell in container,
+run16,2026-09-29T13:00:19.312,2026-09-29T13:00:20.540,attack,pkg_mgmt_late,test-pod-apt-run16,Launch Package Management Process in Container,late(pod already old)
+run16,2026-09-29T13:00:22.544,2026-09-29T13:00:22.681,attack,write_root,test-pod-run16,Write below root,
+run16,2026-09-29T13:00:27.684,2026-09-29T13:00:27.795,attack,env_privesc,test-pod-apt-run16,Potential Local Privilege Escalation via Environment Variables Misuse,
+run16,2026-09-29T13:00:30.800,2026-09-29T13:00:30.890,attack,ssh_info,test-pod-apt-run16,Read ssh information,
+run16,2026-09-29T13:01:31.896,2026-09-29T13:01:31.987,attack,rsync,test-pod-apt-run16,Launch Ingress Remote File Copy Tools in Container,
+run16,2026-09-29T13:01:33.990,2026-09-29T13:01:34.094,attack,sensitive_file,test-pod-run16,Read sensitive file untrusted,
+run16,2026-09-29T13:01:37.098,2026-09-29T13:01:37.217,attack,env_privesc,test-pod-apt-run16,Potential Local Privilege Escalation via Environment Variables Misuse,
+run16,2026-09-29T13:03:03.226,2026-09-29T13:03:03.318,attack,rsync,test-pod-apt-run16,Launch Ingress Remote File Copy Tools in Container,
+run16,2026-09-29T13:03:07.323,2026-09-29T13:03:07.428,attack,binary_drop,test-pod-run16,Drop and execute new binary in container,
+run16,2026-09-29T13:03:09.431,2026-09-29T13:03:09.531,attack,clear_history,test-pod-apt-run16,Delete or rename shell history,
+run16,2026-09-29T13:03:58.550,2026-09-29T13:03:58.660,attack,binary_drop,test-pod-run16,Drop and execute new binary in container,
+run16,2026-09-29T13:04:43.667,2026-09-29T13:04:43.815,attack,k8s_api,test-pod-apt-run16,Contact K8S API Server From Container,
+run16,2026-09-29T13:05:58.827,2026-09-29T13:05:58.917,attack,shell,test-pod-run16,Terminal shell in container,
+run16,2026-09-29T13:06:03.922,2026-09-29T13:06:04.056,attack,k8s_api,test-pod-apt-run16,Contact K8S API Server From Container,
+run16,2026-09-29T13:06:05.060,2026-09-29T13:06:05.145,attack,rsync,test-pod-apt-run16,Launch Ingress Remote File Copy Tools in Container,
+run16,2026-09-29T13:06:06.148,2026-09-29T13:06:06.295,attack,ssh_info,test-pod-apt-run16,Read ssh information,
+run16,2026-09-29T13:06:07.299,2026-09-29T13:06:07.407,attack,env_privesc,test-pod-apt-run16,Potential Local Privilege Escalation via Environment Variables Misuse,
+run16,2026-09-29T13:07:41.415,2026-09-29T13:07:41.553,attack,env_privesc,test-pod-apt-run16,Potential Local Privilege Escalation via Environment Variables Misuse,
+run16,2026-09-29T13:07:47.558,2026-09-29T13:07:47.660,attack,write_root,test-pod-run16,Write below root,
+run16,2026-09-29T13:07:49.663,2026-09-29T13:07:49.767,attack,shell_config,test-pod-apt-run16,Modify Shell Configuration File,
+run16,2026-09-29T13:07:50.771,2026-09-29T13:07:50.871,attack,clear_history,test-pod-apt-run16,Delete or rename shell history,
+run16,2026-09-29T13:07:51.874,2026-09-29T13:07:51.976,attack,k8s_api,test-pod-apt-run16,Contact K8S API Server From Container,
+run16,2026-09-29T13:09:34.984,2026-09-29T13:09:35.093,benign,routine_read,test-pod-apt-run16,,admin_inspection
+run16,2026-09-29T13:09:40.096,2026-09-29T13:09:40.315,benign,routine_network,test-pod-apt-run16,,healthcheck
+run16,2026-09-29T13:09:44.318,2026-09-29T13:09:44.415,benign,config_read,test-pod-apt-run16,,admin_inspection
+run16,2026-09-29T13:10:43.428,2026-09-29T13:10:43.562,attack,rsync,test-pod-apt-run16,Launch Ingress Remote File Copy Tools in Container,
+run16,2026-09-29T13:10:49.565,2026-09-29T13:10:49.692,attack,k8s_api,test-pod-apt-run16,Contact K8S API Server From Container,
+run16,2026-09-29T13:10:52.696,2026-09-29T13:10:52.804,attack,binary_drop,test-pod-run16,Drop and execute new binary in container,
+run16,2026-09-29T13:10:57.811,2026-09-29T13:10:57.904,attack,shell_config,test-pod-apt-run16,Modify Shell Configuration File,
+run16,2026-09-29T13:12:16.917,2026-09-29T13:12:18.472,attack,pkg_mgmt_late,test-pod-apt-run16,Launch Package Management Process in Container,late(pod already old)
+run16,2026-09-29T13:12:21.475,2026-09-29T13:12:21.582,attack,env_privesc,test-pod-apt-run16,Potential Local Privilege Escalation via Environment Variables Misuse,
+run16,2026-09-29T13:12:26.585,2026-09-29T13:12:26.678,attack,binary_drop,test-pod-run16,Drop and execute new binary in container,
+run16,2026-09-29T13:12:32.683,2026-09-29T13:12:32.775,attack,shell,test-pod-run16,Terminal shell in container,
+run16,2026-09-29T13:12:37.779,2026-09-29T13:12:37.879,attack,write_root,test-pod-run16,Write below root,
+run16,2026-09-29T13:12:39.882,2026-09-29T13:12:39.986,attack,shell_config,test-pod-apt-run16,Modify Shell Configuration File,
+run16,2026-09-29T13:13:56.000,2026-09-29T13:13:57.595,attack,pkg_mgmt_late,test-pod-apt-run16,Launch Package Management Process in Container,late(pod already old)
+run16,2026-09-29T13:13:58.599,2026-09-29T13:13:58.767,attack,k8s_api,test-pod-apt-run16,Contact K8S API Server From Container,
+run16,2026-09-29T13:13:59.774,2026-09-29T13:13:59.895,attack,clear_history,test-pod-apt-run16,Delete or rename shell history,
+run16,2026-09-29T13:14:05.900,2026-09-29T13:14:06.005,attack,env_privesc,test-pod-apt-run16,Potential Local Privilege Escalation via Environment Variables Misuse,
+run16,2026-09-29T13:14:07.010,2026-09-29T13:14:07.105,attack,write_root,test-pod-run16,Write below root,
+run16,2026-09-29T13:14:10.110,2026-09-29T13:14:10.206,attack,rsync,test-pod-apt-run16,Launch Ingress Remote File Copy Tools in Container,
+run16,2026-09-29T13:14:54.213,2026-09-29T13:14:54.331,attack,clear_history,test-pod-apt-run16,Delete or rename shell history,
+run16,2026-09-29T13:16:16.345,2026-09-29T13:16:16.443,attack,shell,test-pod-run16,Terminal shell in container,
+run16,2026-09-29T13:16:21.447,2026-09-29T13:16:21.547,attack,clear_history,test-pod-apt-run16,Delete or rename shell history,
+run16,2026-09-29T13:16:22.550,2026-09-29T13:16:22.654,attack,suid,test-pod-run16,Set Setuid or Setgid bit,
+run16,2026-09-29T13:16:27.657,2026-09-29T13:16:27.768,attack,env_privesc,test-pod-apt-run16,Potential Local Privilege Escalation via Environment Variables Misuse,
+run16,2026-09-29T13:16:31.771,2026-09-29T13:16:31.901,attack,shell_config,test-pod-apt-run16,Modify Shell Configuration File,
+run16,2026-09-29T13:16:33.905,2026-09-29T13:16:34.000,attack,ssh_info,test-pod-apt-run16,Read ssh information,
+run16,2026-09-29T13:17:24.008,2026-09-29T13:17:25.109,attack,pkg_mgmt_late,test-pod-apt-run16,Launch Package Management Process in Container,late(pod already old)
+run16,2026-09-29T13:19:01.117,2026-09-29T13:19:01.118,idle,idle_start,,,final_idle
+run16,2026-09-29T13:22:01.121,2026-09-29T13:22:01.125,idle,idle_end,,,final_idle
+run17,2026-09-29T13:22:47.001,2026-09-29T13:22:47.001,meta,pod_created,test-pod-run17,,image:busybox
+run17,2026-09-29T13:22:52.014,2026-09-29T13:22:52.014,meta,pod_created,test-pod-apt-run17,,image:ubuntu
+run17,2026-09-29T13:22:52.016,2026-09-29T13:22:52.018,idle,idle_start,,,initial_idle
+run17,2026-09-29T13:25:52.022,2026-09-29T13:25:52.028,idle,idle_end,,,initial_idle
+run17,2026-09-29T13:26:00.917,2026-09-29T13:26:08.968,benign,pkg_mgmt_fresh,test-pod-apt-run17,Launch Package Management Process in Container,fresh_pod_setup
+run17,2026-09-29T13:26:08.971,2026-09-29T13:26:08.973,idle,idle_round,,,round_1
+run17,2026-09-29T13:27:00.979,2026-09-29T13:27:01.073,attack,shell,test-pod-run17,Terminal shell in container,
+run17,2026-09-29T13:27:04.077,2026-09-29T13:27:05.338,attack,pkg_mgmt_late,test-pod-apt-run17,Launch Package Management Process in Container,late(pod already old)
+run17,2026-09-29T13:27:09.341,2026-09-29T13:27:09.446,attack,binary_drop,test-pod-run17,Drop and execute new binary in container,
+run17,2026-09-29T13:28:04.455,2026-09-29T13:28:04.568,attack,shell_config,test-pod-apt-run17,Modify Shell Configuration File,
+run17,2026-09-29T13:28:09.572,2026-09-29T13:28:09.676,attack,ssh_info,test-pod-apt-run17,Read ssh information,
+run17,2026-09-29T13:29:08.684,2026-09-29T13:29:08.817,attack,k8s_api,test-pod-apt-run17,Contact K8S API Server From Container,
+run17,2026-09-29T13:30:06.824,2026-09-29T13:30:06.955,benign,routine_read,test-pod-apt-run17,,admin_inspection
+run17,2026-09-29T13:31:15.964,2026-09-29T13:31:16.080,attack,write_root,test-pod-run17,Write below root,
+run17,2026-09-29T13:31:22.085,2026-09-29T13:31:22.194,attack,rsync,test-pod-apt-run17,Launch Ingress Remote File Copy Tools in Container,
+run17,2026-09-29T13:31:26.198,2026-09-29T13:31:26.319,attack,ssh_info,test-pod-apt-run17,Read ssh information,
+run17,2026-09-29T13:31:27.324,2026-09-29T13:31:27.406,attack,shell,test-pod-run17,Terminal shell in container,
+run17,2026-09-29T13:31:30.408,2026-09-29T13:31:30.523,attack,suid,test-pod-run17,Set Setuid or Setgid bit,
+run17,2026-09-29T13:31:33.528,2026-09-29T13:31:33.621,attack,clear_history,test-pod-apt-run17,Delete or rename shell history,
+run17,2026-09-29T13:33:10.647,2026-09-29T13:33:10.751,benign,routine_read,test-pod-apt-run17,,admin_inspection
+run17,2026-09-29T13:33:15.754,2026-09-29T13:33:15.958,benign,routine_network,test-pod-apt-run17,,healthcheck
+run17,2026-09-29T13:33:53.963,2026-09-29T13:33:53.965,idle,idle_round,,,round_8
+run17,2026-09-29T13:35:05.972,2026-09-29T13:35:06.078,attack,shell_config,test-pod-apt-run17,Modify Shell Configuration File,
+run17,2026-09-29T13:35:12.082,2026-09-29T13:35:12.183,attack,env_privesc,test-pod-apt-run17,Potential Local Privilege Escalation via Environment Variables Misuse,
+run17,2026-09-29T13:35:16.187,2026-09-29T13:35:16.339,attack,ssh_info,test-pod-apt-run17,Read ssh information,
+run17,2026-09-29T13:35:22.343,2026-09-29T13:35:22.457,attack,sensitive_file,test-pod-run17,Read sensitive file untrusted,
+run17,2026-09-29T13:35:28.463,2026-09-29T13:35:28.574,attack,write_root,test-pod-run17,Write below root,
+run17,2026-09-29T13:35:30.578,2026-09-29T13:35:30.674,attack,rsync,test-pod-apt-run17,Launch Ingress Remote File Copy Tools in Container,
+run17,2026-09-29T13:36:05.680,2026-09-29T13:36:05.682,idle,idle_round,,,round_10
+run17,2026-09-29T13:36:49.687,2026-09-29T13:36:49.811,attack,write_root,test-pod-run17,Write below root,
+run17,2026-09-29T13:36:51.816,2026-09-29T13:36:51.932,attack,suid,test-pod-run17,Set Setuid or Setgid bit,
+run17,2026-09-29T13:36:56.936,2026-09-29T13:36:58.175,attack,pkg_mgmt_late,test-pod-apt-run17,Launch Package Management Process in Container,late(pod already old)
+run17,2026-09-29T13:37:01.178,2026-09-29T13:37:01.305,attack,binary_drop,test-pod-run17,Drop and execute new binary in container,
+run17,2026-09-29T13:37:07.310,2026-09-29T13:37:07.407,attack,rsync,test-pod-apt-run17,Launch Ingress Remote File Copy Tools in Container,
+run17,2026-09-29T13:37:10.411,2026-09-29T13:37:10.522,attack,ssh_info,test-pod-apt-run17,Read ssh information,
+run17,2026-09-29T13:37:13.528,2026-09-29T13:37:13.633,attack,sensitive_file,test-pod-run17,Read sensitive file untrusted,
+run17,2026-09-29T13:37:15.637,2026-09-29T13:37:15.781,attack,k8s_api,test-pod-apt-run17,Contact K8S API Server From Container,
+run17,2026-09-29T13:37:21.784,2026-09-29T13:37:21.894,attack,shell,test-pod-run17,Terminal shell in container,
+run17,2026-09-29T13:38:09.904,2026-09-29T13:38:10.003,attack,shell,test-pod-run17,Terminal shell in container,
+run17,2026-09-29T13:38:57.014,2026-09-29T13:38:57.134,benign,routine_read,test-pod-apt-run17,,admin_inspection
+run17,2026-09-29T13:39:53.140,2026-09-29T13:39:53.142,idle,idle_round,,,round_14
+run17,2026-09-29T13:41:10.146,2026-09-29T13:41:10.147,idle,idle_round,,,round_15
+run17,2026-09-29T13:41:54.150,2026-09-29T13:41:54.153,idle,idle_start,,,final_idle
+run17,2026-09-29T13:44:54.157,2026-09-29T13:44:54.158,idle,idle_end,,,final_idle
+run18,2026-09-29T13:56:00.527,2026-09-29T13:56:00.527,meta,pod_created,test-pod-run18,,image:busybox
+run18,2026-09-29T13:56:05.556,2026-09-29T13:56:05.556,meta,pod_created,test-pod-apt-run18,,image:ubuntu
+run18,2026-09-29T13:56:05.558,2026-09-29T13:56:05.560,idle,idle_start,,,initial_idle
+run18,2026-09-29T13:59:05.564,2026-09-29T13:59:05.565,idle,idle_end,,,initial_idle
+run18,2026-09-29T13:59:21.748,2026-09-29T13:59:30.314,benign,pkg_mgmt_fresh,test-pod-apt-run18,Launch Package Management Process in Container,fresh_pod_setup
+run18,2026-09-29T13:59:30.319,2026-09-29T13:59:31.863,attack,pkg_mgmt_late,test-pod-apt-run18,Launch Package Management Process in Container,late(pod already old)
+run18,2026-09-29T13:59:33.865,2026-09-29T13:59:33.980,attack,clear_history,test-pod-apt-run18,Delete or rename shell history,
+run18,2026-09-29T13:59:34.986,2026-09-29T13:59:35.076,attack,rsync,test-pod-apt-run18,Launch Ingress Remote File Copy Tools in Container,
+run18,2026-09-29T13:59:38.082,2026-09-29T13:59:38.178,attack,shell_config,test-pod-apt-run18,Modify Shell Configuration File,
+run18,2026-09-29T13:59:43.181,2026-09-29T13:59:43.287,attack,write_root,test-pod-run18,Write below root,
+run18,2026-09-29T13:59:45.293,2026-09-29T13:59:45.487,attack,ssh_info,test-pod-apt-run18,Read ssh information,
+run18,2026-09-29T14:00:50.499,2026-09-29T14:00:50.663,attack,env_privesc,test-pod-apt-run18,Potential Local Privilege Escalation via Environment Variables Misuse,
+run18,2026-09-29T14:00:56.669,2026-09-29T14:00:56.794,attack,sensitive_file,test-pod-run18,Read sensitive file untrusted,
+run18,2026-09-29T14:00:57.800,2026-09-29T14:00:57.912,attack,ssh_info,test-pod-apt-run18,Read ssh information,
+run18,2026-09-29T14:01:03.914,2026-09-29T14:01:04.030,attack,suid,test-pod-run18,Set Setuid or Setgid bit,
+run18,2026-09-29T14:02:34.039,2026-09-29T14:02:34.127,attack,rsync,test-pod-apt-run18,Launch Ingress Remote File Copy Tools in Container,
+run18,2026-09-29T14:03:13.132,2026-09-29T14:03:13.136,idle,idle_round,,,round_4
+run18,2026-09-29T14:04:33.146,2026-09-29T14:04:33.259,attack,clear_history,test-pod-apt-run18,Delete or rename shell history,
+run18,2026-09-29T14:05:58.266,2026-09-29T14:05:58.375,attack,write_root,test-pod-run18,Write below root,
+run18,2026-09-29T14:06:04.380,2026-09-29T14:06:04.506,attack,sensitive_file,test-pod-run18,Read sensitive file untrusted,
+run18,2026-09-29T14:06:09.511,2026-09-29T14:06:09.618,attack,shell_config,test-pod-apt-run18,Modify Shell Configuration File,
+run18,2026-09-29T14:06:15.622,2026-09-29T14:06:15.752,attack,binary_drop,test-pod-run18,Drop and execute new binary in container,
+run18,2026-09-29T14:06:21.756,2026-09-29T14:06:21.876,attack,k8s_api,test-pod-apt-run18,Contact K8S API Server From Container,
+run18,2026-09-29T14:07:02.883,2026-09-29T14:07:02.967,attack,rsync,test-pod-apt-run18,Launch Ingress Remote File Copy Tools in Container,
+run18,2026-09-29T14:07:05.971,2026-09-29T14:07:06.100,attack,k8s_api,test-pod-apt-run18,Contact K8S API Server From Container,
+run18,2026-09-29T14:07:48.107,2026-09-29T14:07:49.207,attack,pkg_mgmt_late,test-pod-apt-run18,Launch Package Management Process in Container,late(pod already old)
+run18,2026-09-29T14:09:02.211,2026-09-29T14:09:02.213,idle,idle_round,,,round_9
+run18,2026-09-29T14:10:07.218,2026-09-29T14:10:07.327,attack,shell_config,test-pod-apt-run18,Modify Shell Configuration File,
+run18,2026-09-29T14:10:10.342,2026-09-29T14:10:10.475,attack,k8s_api,test-pod-apt-run18,Contact K8S API Server From Container,
+run18,2026-09-29T14:10:16.479,2026-09-29T14:10:16.595,attack,write_root,test-pod-run18,Write below root,
+run18,2026-09-29T14:10:20.599,2026-09-29T14:10:20.686,attack,clear_history,test-pod-apt-run18,Delete or rename shell history,
+run18,2026-09-29T14:11:17.691,2026-09-29T14:11:17.983,benign,routine_network,test-pod-apt-run18,,healthcheck
+run18,2026-09-29T14:11:18.986,2026-09-29T14:11:19.086,benign,routine_read,test-pod-apt-run18,,admin_inspection
+run18,2026-09-29T14:11:23.088,2026-09-29T14:11:23.186,benign,config_read,test-pod-apt-run18,,admin_inspection
+run18,2026-09-29T14:12:47.195,2026-09-29T14:12:47.304,attack,env_privesc,test-pod-apt-run18,Potential Local Privilege Escalation via Environment Variables Misuse,
+run18,2026-09-29T14:12:48.308,2026-09-29T14:12:48.455,attack,sensitive_file,test-pod-run18,Read sensitive file untrusted,
+run18,2026-09-29T14:12:50.462,2026-09-29T14:12:50.560,attack,shell_config,test-pod-apt-run18,Modify Shell Configuration File,
+run18,2026-09-29T14:12:53.567,2026-09-29T14:12:53.684,attack,binary_drop,test-pod-run18,Drop and execute new binary in container,
+run18,2026-09-29T14:12:59.690,2026-09-29T14:12:59.783,attack,ssh_info,test-pod-apt-run18,Read ssh information,
+run18,2026-09-29T14:14:24.788,2026-09-29T14:14:24.790,idle,idle_round,,,round_13
+run18,2026-09-29T14:15:50.793,2026-09-29T14:15:50.795,idle,idle_round,,,round_14
+run18,2026-09-29T14:16:40.800,2026-09-29T14:16:41.971,attack,pkg_mgmt_late,test-pod-apt-run18,Launch Package Management Process in Container,late(pod already old)
+run18,2026-09-29T14:16:45.973,2026-09-29T14:16:46.072,attack,clear_history,test-pod-apt-run18,Delete or rename shell history,
+run18,2026-09-29T14:16:52.076,2026-09-29T14:16:52.165,attack,suid,test-pod-run18,Set Setuid or Setgid bit,
+run18,2026-09-29T14:18:01.171,2026-09-29T14:18:01.172,idle,idle_start,,,final_idle
+run18,2026-09-29T14:21:01.175,2026-09-29T14:21:01.176,idle,idle_end,,,final_idle
+run19,2026-09-29T14:35:02.757,2026-09-29T14:35:02.757,meta,pod_created,test-pod-run19,,image:busybox
+run19,2026-09-29T14:35:07.779,2026-09-29T14:35:07.779,meta,pod_created,test-pod-apt-run19,,image:ubuntu
+run19,2026-09-29T14:35:07.782,2026-09-29T14:35:07.785,idle,idle_start,,,initial_idle
+run19,2026-09-29T14:38:07.788,2026-09-29T14:38:07.789,idle,idle_end,,,initial_idle
+run19,2026-09-29T14:38:16.613,2026-09-29T14:38:27.906,benign,pkg_mgmt_fresh,test-pod-apt-run19,Launch Package Management Process in Container,fresh_pod_setup
+run19,2026-09-29T14:38:27.908,2026-09-29T14:38:27.909,idle,idle_round,,,round_1
+run19,2026-09-29T14:39:00.912,2026-09-29T14:39:00.914,idle,idle_round,,,round_2
+run19,2026-09-29T14:39:52.918,2026-09-29T14:39:54.139,attack,pkg_mgmt_late,test-pod-apt-run19,Launch Package Management Process in Container,late(pod already old)
+run19,2026-09-29T14:39:59.143,2026-09-29T14:39:59.238,attack,shell,test-pod-run19,Terminal shell in container,
+run19,2026-09-29T14:41:30.256,2026-09-29T14:41:31.841,attack,pkg_mgmt_late,test-pod-apt-run19,Launch Package Management Process in Container,late(pod already old)
+run19,2026-09-29T14:41:33.844,2026-09-29T14:41:33.985,attack,rsync,test-pod-apt-run19,Launch Ingress Remote File Copy Tools in Container,
+run19,2026-09-29T14:43:04.996,2026-09-29T14:43:05.103,attack,binary_drop,test-pod-run19,Drop and execute new binary in container,
+run19,2026-09-29T14:43:10.109,2026-09-29T14:43:10.205,attack,ssh_info,test-pod-apt-run19,Read ssh information,
+run19,2026-09-29T14:43:15.209,2026-09-29T14:43:15.305,attack,shell,test-pod-run19,Terminal shell in container,
+run19,2026-09-29T14:43:21.310,2026-09-29T14:43:21.405,attack,sensitive_file,test-pod-run19,Read sensitive file untrusted,
+run19,2026-09-29T14:44:36.411,2026-09-29T14:44:36.542,benign,routine_read,test-pod-apt-run19,,admin_inspection
+run19,2026-09-29T14:44:40.545,2026-09-29T14:44:40.741,benign,routine_network,test-pod-apt-run19,,healthcheck
+run19,2026-09-29T14:44:44.746,2026-09-29T14:44:44.848,benign,config_read,test-pod-apt-run19,,admin_inspection
+run19,2026-09-29T14:45:54.867,2026-09-29T14:45:55.109,benign,config_read,test-pod-apt-run19,,admin_inspection
+run19,2026-09-29T14:45:58.115,2026-09-29T14:45:58.315,benign,routine_network,test-pod-apt-run19,,healthcheck
+run19,2026-09-29T14:46:01.320,2026-09-29T14:46:01.461,benign,routine_read,test-pod-apt-run19,,admin_inspection
+run19,2026-09-29T14:46:43.477,2026-09-29T14:46:43.588,benign,config_read,test-pod-apt-run19,,admin_inspection
+run19,2026-09-29T14:46:46.592,2026-09-29T14:46:46.782,benign,routine_network,test-pod-apt-run19,,healthcheck
+run19,2026-09-29T14:46:47.788,2026-09-29T14:46:47.954,benign,routine_read,test-pod-apt-run19,,admin_inspection
+run19,2026-09-29T14:48:18.968,2026-09-29T14:48:19.078,attack,ssh_info,test-pod-apt-run19,Read ssh information,
+run19,2026-09-29T14:48:21.083,2026-09-29T14:48:21.200,attack,clear_history,test-pod-apt-run19,Delete or rename shell history,
+run19,2026-09-29T14:48:22.208,2026-09-29T14:48:22.317,attack,shell,test-pod-run19,Terminal shell in container,
+run19,2026-09-29T14:48:28.322,2026-09-29T14:48:28.468,attack,k8s_api,test-pod-apt-run19,Contact K8S API Server From Container,
+run19,2026-09-29T14:49:40.479,2026-09-29T14:49:40.594,attack,shell_config,test-pod-apt-run19,Modify Shell Configuration File,
+run19,2026-09-29T14:51:06.604,2026-09-29T14:51:06.605,idle,idle_round,,,round_11
+run19,2026-09-29T14:52:13.612,2026-09-29T14:52:13.705,attack,shell_config,test-pod-apt-run19,Modify Shell Configuration File,
+run19,2026-09-29T14:52:15.709,2026-09-29T14:52:15.811,attack,binary_drop,test-pod-run19,Drop and execute new binary in container,
+run19,2026-09-29T14:52:16.815,2026-09-29T14:52:17.847,attack,pkg_mgmt_late,test-pod-apt-run19,Launch Package Management Process in Container,late(pod already old)
+run19,2026-09-29T14:53:34.853,2026-09-29T14:53:35.034,benign,routine_network,test-pod-apt-run19,,healthcheck
+run19,2026-09-29T14:53:41.037,2026-09-29T14:53:41.130,benign,config_read,test-pod-apt-run19,,admin_inspection
+run19,2026-09-29T14:53:45.133,2026-09-29T14:53:45.244,benign,routine_read,test-pod-apt-run19,,admin_inspection
+run19,2026-09-29T14:54:32.250,2026-09-29T14:54:32.349,attack,ssh_info,test-pod-apt-run19,Read ssh information,
+run19,2026-09-29T14:54:36.352,2026-09-29T14:54:36.443,attack,env_privesc,test-pod-apt-run19,Potential Local Privilege Escalation via Environment Variables Misuse,
+run19,2026-09-29T14:54:41.446,2026-09-29T14:54:41.552,attack,suid,test-pod-run19,Set Setuid or Setgid bit,
+run19,2026-09-29T14:54:42.558,2026-09-29T14:54:42.678,attack,shell,test-pod-run19,Terminal shell in container,
+run19,2026-09-29T14:54:47.681,2026-09-29T14:54:47.785,attack,sensitive_file,test-pod-run19,Read sensitive file untrusted,
+run19,2026-09-29T14:55:24.793,2026-09-29T14:55:24.878,benign,config_read,test-pod-apt-run19,,admin_inspection
+run19,2026-09-29T14:56:54.885,2026-09-29T14:56:54.887,idle,idle_start,,,final_idle
+run19,2026-09-29T14:59:54.891,2026-09-29T14:59:54.893,idle,idle_end,,,final_idle
+run20,2026-09-30T23:58:06.772,2026-09-30T23:58:06.772,meta,pod_created,test-pod-run20,,image:busybox
+run20,2026-09-30T23:58:11.806,2026-09-30T23:58:11.806,meta,pod_created,test-pod-apt-run20,,image:ubuntu
+run20,2026-09-30T23:58:11.808,2026-09-30T23:58:11.809,idle,idle_start,,,initial_idle
+run20,2026-10-01T00:06:32.044,2026-10-01T00:06:32.044,meta,pod_created,test-pod-run20,,image:busybox
+run20,2026-10-01T00:06:37.080,2026-10-01T00:06:37.080,meta,pod_created,test-pod-apt-run20,,image:ubuntu
+run20,2026-10-01T00:06:37.083,2026-10-01T00:06:37.084,idle,idle_start,,,initial_idle
+run20,2026-10-01T00:09:37.090,2026-10-01T00:09:37.093,idle,idle_end,,,initial_idle
+run20,2026-10-01T00:09:47.025,2026-10-01T00:09:54.853,benign,pkg_mgmt_fresh,test-pod-apt-run20,Launch Package Management Process in Container,fresh_pod_setup
+run20,2026-10-01T00:09:54.877,2026-10-01T00:09:55.012,attack,k8s_api,test-pod-apt-run20,Contact K8S API Server From Container,
+run20,2026-10-01T00:10:00.015,2026-10-01T00:10:00.106,attack,rsync,test-pod-apt-run20,Launch Ingress Remote File Copy Tools in Container,
+run20,2026-10-01T00:10:03.112,2026-10-01T00:10:03.215,attack,sensitive_file,test-pod-run20,Read sensitive file untrusted,
+run20,2026-10-01T00:10:04.220,2026-10-01T00:10:04.333,attack,binary_drop,test-pod-run20,Drop and execute new binary in container,
+run20,2026-10-01T00:10:09.343,2026-10-01T00:10:09.453,attack,suid,test-pod-run20,Set Setuid or Setgid bit,
+run20,2026-10-01T00:10:10.458,2026-10-01T00:10:10.597,attack,clear_history,test-pod-apt-run20,Delete or rename shell history,
+run20,2026-10-01T00:10:11.645,2026-10-01T00:10:11.752,attack,env_privesc,test-pod-apt-run20,Potential Local Privilege Escalation via Environment Variables Misuse,
+run20,2026-10-01T00:10:17.759,2026-10-01T00:10:17.843,attack,shell,test-pod-run20,Terminal shell in container,
+run20,2026-10-01T00:11:55.856,2026-10-01T00:11:55.910,attack,ssh_info,test-pod-apt-run20,Read ssh information,
+run20,2026-10-01T00:12:01.915,2026-10-01T00:12:01.965,attack,write_root,test-pod-run20,Write below root,
+run20,2026-10-01T00:12:06.969,2026-10-01T00:12:07.037,attack,suid,test-pod-run20,Set Setuid or Setgid bit,
+run20,2026-10-01T00:12:11.040,2026-10-01T00:12:11.093,attack,binary_drop,test-pod-run20,Drop and execute new binary in container,
+run20,2026-10-01T00:12:17.096,2026-10-01T00:12:17.147,attack,pkg_mgmt_late,test-pod-apt-run20,Launch Package Management Process in Container,late(pod already old)
+run20,2026-10-01T00:12:20.151,2026-10-01T00:12:20.222,attack,shell_config,test-pod-apt-run20,Modify Shell Configuration File,
+run20,2026-10-01T00:13:59.232,2026-10-01T00:13:59.278,attack,ssh_info,test-pod-apt-run20,Read ssh information,
+run20,2026-10-01T00:14:03.282,2026-10-01T00:14:03.392,attack,rsync,test-pod-apt-run20,Launch Ingress Remote File Copy Tools in Container,
+run20,2026-10-01T00:14:08.401,2026-10-01T00:14:08.464,attack,binary_drop,test-pod-run20,Drop and execute new binary in container,
+run20,2026-10-01T00:14:11.469,2026-10-01T00:14:11.526,attack,env_privesc,test-pod-apt-run20,Potential Local Privilege Escalation via Environment Variables Misuse,
+run20,2026-10-01T00:14:16.530,2026-10-01T00:14:16.597,attack,pkg_mgmt_late,test-pod-apt-run20,Launch Package Management Process in Container,late(pod already old)
+run20,2026-10-01T00:14:17.602,2026-10-01T00:14:17.657,attack,shell,test-pod-run20,Terminal shell in container,
+run20,2026-10-01T00:14:23.662,2026-10-01T00:14:23.751,attack,write_root,test-pod-run20,Write below root,
+run20,2026-10-01T00:14:24.756,2026-10-01T00:14:24.854,attack,sensitive_file,test-pod-run20,Read sensitive file untrusted,
+run20,2026-10-01T00:14:30.860,2026-10-01T00:14:30.914,attack,suid,test-pod-run20,Set Setuid or Setgid bit,
+run20,2026-10-01T00:15:19.926,2026-10-01T00:15:20.009,attack,suid,test-pod-run20,Set Setuid or Setgid bit,
+run20,2026-10-01T00:15:24.019,2026-10-01T00:15:24.189,attack,shell,test-pod-run20,Terminal shell in container,
+run20,2026-10-01T00:15:26.199,2026-10-01T00:15:26.248,attack,binary_drop,test-pod-run20,Drop and execute new binary in container,
+run20,2026-10-01T00:15:30.256,2026-10-01T00:15:30.327,attack,clear_history,test-pod-apt-run20,Delete or rename shell history,
+run20,2026-10-01T00:15:31.332,2026-10-01T00:15:31.391,attack,env_privesc,test-pod-apt-run20,Potential Local Privilege Escalation via Environment Variables Misuse,
+run20,2026-10-01T00:15:36.397,2026-10-01T00:15:36.443,attack,shell_config,test-pod-apt-run20,Modify Shell Configuration File,
+run20,2026-10-01T00:15:38.448,2026-10-01T00:15:38.498,attack,rsync,test-pod-apt-run20,Launch Ingress Remote File Copy Tools in Container,
+run20,2026-10-01T00:17:10.506,2026-10-01T00:17:10.618,attack,sensitive_file,test-pod-run20,Read sensitive file untrusted,
+run20,2026-10-01T00:17:16.623,2026-10-01T00:17:16.674,attack,binary_drop,test-pod-run20,Drop and execute new binary in container,
+run20,2026-10-01T00:18:30.684,2026-10-01T00:18:30.736,benign,routine_read,test-pod-apt-run20,,admin_inspection
+run20,2026-10-01T00:19:31.752,2026-10-01T00:19:31.802,benign,config_read,test-pod-apt-run20,,admin_inspection
+run20,2026-10-01T00:19:32.808,2026-10-01T00:19:32.868,benign,routine_network,test-pod-apt-run20,,healthcheck
+run20,2026-10-01T00:21:07.878,2026-10-01T00:21:07.932,benign,routine_read,test-pod-apt-run20,,admin_inspection
+run20,2026-10-01T00:21:12.938,2026-10-01T00:21:12.990,benign,config_read,test-pod-apt-run20,,admin_inspection
+run20,2026-10-01T00:21:15.995,2026-10-01T00:21:16.052,benign,routine_network,test-pod-apt-run20,,healthcheck
+run20,2026-10-01T00:22:44.095,2026-10-01T00:22:44.146,benign,routine_read,test-pod-apt-run20,,admin_inspection
+run20,2026-10-01T00:24:10.155,2026-10-01T00:24:10.204,benign,routine_read,test-pod-apt-run20,,admin_inspection
+run20,2026-10-01T00:25:11.216,2026-10-01T00:25:11.280,attack,env_privesc,test-pod-apt-run20,Potential Local Privilege Escalation via Environment Variables Misuse,
+run20,2026-10-01T00:25:13.291,2026-10-01T00:25:13.354,attack,binary_drop,test-pod-run20,Drop and execute new binary in container,
+run20,2026-10-01T00:26:22.368,2026-10-01T00:26:22.412,attack,k8s_api,test-pod-apt-run20,Contact K8S API Server From Container,
+run20,2026-10-01T00:26:26.416,2026-10-01T00:26:26.477,attack,suid,test-pod-run20,Set Setuid or Setgid bit,
+run20,2026-10-01T00:26:29.482,2026-10-01T00:26:29.529,attack,rsync,test-pod-apt-run20,Launch Ingress Remote File Copy Tools in Container,
+run20,2026-10-01T00:26:33.534,2026-10-01T00:26:33.587,attack,shell,test-pod-run20,Terminal shell in container,
+run20,2026-10-01T00:26:39.592,2026-10-01T00:26:39.640,attack,sensitive_file,test-pod-run20,Read sensitive file untrusted,
+run20,2026-10-01T00:26:41.645,2026-10-01T00:26:41.692,attack,pkg_mgmt_late,test-pod-apt-run20,Launch Package Management Process in Container,late(pod already old)
+run20,2026-10-01T00:26:43.699,2026-10-01T00:26:43.748,attack,clear_history,test-pod-apt-run20,Delete or rename shell history,
+run20,2026-10-01T00:26:47.753,2026-10-01T00:26:47.799,attack,write_root,test-pod-run20,Write below root,
+run20,2026-10-01T00:27:26.814,2026-10-01T00:27:26.862,attack,rsync,test-pod-apt-run20,Launch Ingress Remote File Copy Tools in Container,
+run20,2026-10-01T00:28:16.873,2026-10-01T00:28:16.924,benign,routine_read,test-pod-apt-run20,,admin_inspection
+run20,2026-10-01T00:28:22.930,2026-10-01T00:28:22.981,benign,config_read,test-pod-apt-run20,,admin_inspection
+run20,2026-10-01T00:29:20.990,2026-10-01T00:29:21.043,attack,suid,test-pod-run20,Set Setuid or Setgid bit,
+run20,2026-10-01T00:29:22.050,2026-10-01T00:29:22.098,attack,shell_config,test-pod-apt-run20,Modify Shell Configuration File,
+run20,2026-10-01T00:29:26.100,2026-10-01T00:29:26.149,attack,binary_drop,test-pod-run20,Drop and execute new binary in container,
+run20,2026-10-01T00:29:32.156,2026-10-01T00:29:32.204,attack,shell,test-pod-run20,Terminal shell in container,
+run20,2026-10-01T00:29:36.208,2026-10-01T00:29:36.256,attack,rsync,test-pod-apt-run20,Launch Ingress Remote File Copy Tools in Container,
+run20,2026-10-01T00:30:12.265,2026-10-01T00:30:12.267,idle,idle_start,,,final_idle
+run20,2026-10-01T00:33:12.274,2026-10-01T00:33:12.277,idle,idle_end,,,final_idle
+run21,2026-10-01T08:27:19.020,2026-10-01T08:27:19.020,meta,pod_created,test-pod-run21,,image:busybox
+run21,2026-10-01T08:27:25.081,2026-10-01T08:27:25.081,meta,pod_created,test-pod-apt-run21,,image:ubuntu
+run21,2026-10-01T08:27:25.084,2026-10-01T08:27:25.087,idle,idle_start,,,initial_idle
+run21,2026-10-01T08:30:25.089,2026-10-01T08:30:25.091,idle,idle_end,,,initial_idle
+run21,2026-10-01T08:30:36.216,2026-10-01T08:30:43.867,benign,pkg_mgmt_fresh,test-pod-apt-run21,Launch Package Management Process in Container,fresh_pod_setup
+run21,2026-10-01T08:30:43.873,2026-10-01T08:30:43.953,attack,rsync,test-pod-apt-run21,Launch Ingress Remote File Copy Tools in Container,
+run21,2026-10-01T08:30:46.955,2026-10-01T08:30:47.056,attack,shell,test-pod-run21,Terminal shell in container,
+run21,2026-10-01T08:30:53.061,2026-10-01T08:30:54.604,attack,pkg_mgmt_late,test-pod-apt-run21,Launch Package Management Process in Container,late(pod already old)
+run21,2026-10-01T08:30:56.610,2026-10-01T08:30:56.711,attack,shell_config,test-pod-apt-run21,Modify Shell Configuration File,
+run21,2026-10-01T08:32:23.720,2026-10-01T08:32:23.826,attack,ssh_info,test-pod-apt-run21,Read ssh information,
+run21,2026-10-01T08:32:27.830,2026-10-01T08:32:27.918,attack,shell,test-pod-run21,Terminal shell in container,
+run21,2026-10-01T08:33:39.930,2026-10-01T08:33:40.071,attack,suid,test-pod-run21,Set Setuid or Setgid bit,
+run21,2026-10-01T08:33:45.076,2026-10-01T08:33:46.661,attack,pkg_mgmt_late,test-pod-apt-run21,Launch Package Management Process in Container,late(pod already old)
+run21,2026-10-01T08:33:47.666,2026-10-01T08:33:47.781,attack,k8s_api,test-pod-apt-run21,Contact K8S API Server From Container,
+run21,2026-10-01T08:33:50.785,2026-10-01T08:33:50.870,attack,clear_history,test-pod-apt-run21,Delete or rename shell history,
+run21,2026-10-01T08:33:51.879,2026-10-01T08:33:51.969,attack,sensitive_file,test-pod-run21,Read sensitive file untrusted,
+run21,2026-10-01T08:34:25.983,2026-10-01T08:34:26.026,benign,config_read,test-pod-apt-run21,,admin_inspection
+run21,2026-10-01T08:34:29.029,2026-10-01T08:34:29.083,benign,routine_read,test-pod-apt-run21,,admin_inspection
+run21,2026-10-01T08:35:16.091,2026-10-01T08:35:16.149,attack,ssh_info,test-pod-apt-run21,Read ssh information,
+run21,2026-10-01T08:36:05.156,2026-10-01T08:36:05.159,idle,idle_round,,,round_6
+run21,2026-10-01T08:37:22.163,2026-10-01T08:37:22.165,idle,idle_round,,,round_7
+run21,2026-10-01T08:38:27.173,2026-10-01T08:38:27.175,idle,idle_round,,,round_8
+run21,2026-10-01T08:39:43.180,2026-10-01T08:39:43.230,attack,rsync,test-pod-apt-run21,Launch Ingress Remote File Copy Tools in Container,
+run21,2026-10-01T08:39:46.236,2026-10-01T08:39:46.286,attack,sensitive_file,test-pod-run21,Read sensitive file untrusted,
+run21,2026-10-01T08:39:48.294,2026-10-01T08:39:48.342,attack,k8s_api,test-pod-apt-run21,Contact K8S API Server From Container,
+run21,2026-10-01T08:39:52.346,2026-10-01T08:39:52.394,attack,shell,test-pod-run21,Terminal shell in container,
+run21,2026-10-01T08:39:57.399,2026-10-01T08:39:57.452,attack,pkg_mgmt_late,test-pod-apt-run21,Launch Package Management Process in Container,late(pod already old)
+run21,2026-10-01T08:41:24.460,2026-10-01T08:41:24.508,attack,shell,test-pod-run21,Terminal shell in container,
+run21,2026-10-01T08:41:29.512,2026-10-01T08:41:29.562,attack,k8s_api,test-pod-apt-run21,Contact K8S API Server From Container,
+run21,2026-10-01T08:41:34.570,2026-10-01T08:41:34.620,attack,rsync,test-pod-apt-run21,Launch Ingress Remote File Copy Tools in Container,
+run21,2026-10-01T08:41:39.627,2026-10-01T08:41:39.678,attack,write_root,test-pod-run21,Write below root,
+run21,2026-10-01T08:41:40.684,2026-10-01T08:41:40.734,attack,suid,test-pod-run21,Set Setuid or Setgid bit,
+run21,2026-10-01T08:42:29.746,2026-10-01T08:42:29.791,attack,binary_drop,test-pod-run21,Drop and execute new binary in container,
+run21,2026-10-01T08:42:33.067,2026-10-01T08:42:33.116,attack,suid,test-pod-run21,Set Setuid or Setgid bit,
+run22,2026-10-01T08:47:59.930,2026-10-01T08:47:59.930,meta,pod_created,test-pod-run22,,image:busybox
+run22,2026-10-01T08:48:03.952,2026-10-01T08:48:03.952,meta,pod_created,test-pod-apt-run22,,image:ubuntu
+run22,2026-10-01T08:48:03.955,2026-10-01T08:48:03.956,idle,idle_start,,,initial_idle
+run22,2026-10-01T08:51:03.962,2026-10-01T08:51:03.965,idle,idle_end,,,initial_idle
+run22,2026-10-01T08:51:14.716,2026-10-01T08:51:24.498,benign,pkg_mgmt_fresh,test-pod-apt-run22,Launch Package Management Process in Container,fresh_pod_setup
+run22,2026-10-01T08:51:24.504,2026-10-01T08:51:24.676,attack,k8s_api,test-pod-apt-run22,Contact K8S API Server From Container,
+run22,2026-10-01T08:51:25.681,2026-10-01T08:51:25.805,attack,binary_drop,test-pod-run22,Drop and execute new binary in container,
+run22,2026-10-01T08:51:27.811,2026-10-01T08:51:27.943,attack,suid,test-pod-run22,Set Setuid or Setgid bit,
+run22,2026-10-01T08:51:32.963,2026-10-01T08:51:34.540,attack,pkg_mgmt_late,test-pod-apt-run22,Launch Package Management Process in Container,late(pod already old)
+run22,2026-10-01T08:51:40.545,2026-10-01T08:51:40.655,attack,write_root,test-pod-run22,Write below root,
+run22,2026-10-01T08:53:19.662,2026-10-01T08:53:19.665,idle,idle_round,,,round_2
+run22,2026-10-01T08:54:51.669,2026-10-01T08:54:51.673,idle,idle_round,,,round_3
+run22,2026-10-01T08:56:26.686,2026-10-01T08:56:26.824,attack,env_privesc,test-pod-apt-run22,Potential Local Privilege Escalation via Environment Variables Misuse,
+run22,2026-10-01T08:57:12.835,2026-10-01T08:57:12.947,benign,routine_read,test-pod-apt-run22,,admin_inspection
+run22,2026-10-01T08:57:18.951,2026-10-01T08:57:19.055,benign,config_read,test-pod-apt-run22,,admin_inspection
+run22,2026-10-01T08:58:30.063,2026-10-01T08:58:30.201,attack,write_root,test-pod-run22,Write below root,
+run22,2026-10-01T08:58:36.218,2026-10-01T08:58:36.388,attack,k8s_api,test-pod-apt-run22,Contact K8S API Server From Container,
+run22,2026-10-01T08:58:39.393,2026-10-01T08:58:39.521,attack,binary_drop,test-pod-run22,Drop and execute new binary in container,
+run22,2026-10-01T08:58:40.526,2026-10-01T08:58:40.641,attack,ssh_info,test-pod-apt-run22,Read ssh information,
+run22,2026-10-01T08:58:45.646,2026-10-01T08:58:45.764,attack,sensitive_file,test-pod-run22,Read sensitive file untrusted,
+run22,2026-10-01T08:59:26.774,2026-10-01T08:59:26.777,idle,idle_round,,,round_7
+run22,2026-10-01T09:00:46.781,2026-10-01T09:00:46.785,idle,idle_round,,,round_8
+run22,2026-10-01T09:02:12.789,2026-10-01T09:02:12.790,idle,idle_round,,,round_9
+run22,2026-10-01T09:03:22.798,2026-10-01T09:03:22.951,attack,env_privesc,test-pod-apt-run22,Potential Local Privilege Escalation via Environment Variables Misuse,
+run22,2026-10-01T09:03:27.957,2026-10-01T09:03:28.067,attack,rsync,test-pod-apt-run22,Launch Ingress Remote File Copy Tools in Container,
+run22,2026-10-01T09:04:51.079,2026-10-01T09:04:52.787,attack,pkg_mgmt_late,test-pod-apt-run22,Launch Package Management Process in Container,late(pod already old)
+run22,2026-10-01T09:04:58.791,2026-10-01T09:04:58.941,attack,sensitive_file,test-pod-run22,Read sensitive file untrusted,
+run22,2026-10-01T09:05:01.947,2026-10-01T09:05:02.061,attack,shell_config,test-pod-apt-run22,Modify Shell Configuration File,
+run22,2026-10-01T09:05:06.070,2026-10-01T09:05:06.201,attack,write_root,test-pod-run22,Write below root,
+run22,2026-10-01T09:05:07.207,2026-10-01T09:05:07.379,attack,binary_drop,test-pod-run22,Drop and execute new binary in container,
+run22,2026-10-01T09:06:41.389,2026-10-01T09:06:41.514,attack,binary_drop,test-pod-run22,Drop and execute new binary in container,
+run22,2026-10-01T09:06:42.520,2026-10-01T09:06:42.624,attack,shell_config,test-pod-apt-run22,Modify Shell Configuration File,
+run22,2026-10-01T09:06:48.630,2026-10-01T09:06:48.740,attack,ssh_info,test-pod-apt-run22,Read ssh information,
+run22,2026-10-01T09:06:49.746,2026-10-01T09:06:51.437,attack,pkg_mgmt_late,test-pod-apt-run22,Launch Package Management Process in Container,late(pod already old)
+run22,2026-10-01T09:06:57.441,2026-10-01T09:06:57.584,attack,env_privesc,test-pod-apt-run22,Potential Local Privilege Escalation via Environment Variables Misuse,
+run22,2026-10-01T09:07:03.589,2026-10-01T09:07:03.710,attack,write_root,test-pod-run22,Write below root,
+run22,2026-10-01T09:07:09.718,2026-10-01T09:07:09.835,attack,rsync,test-pod-apt-run22,Launch Ingress Remote File Copy Tools in Container,
+run22,2026-10-01T09:08:38.845,2026-10-01T09:08:38.960,benign,routine_read,test-pod-apt-run22,,admin_inspection
+run22,2026-10-01T09:09:13.971,2026-10-01T09:09:14.078,benign,config_read,test-pod-apt-run22,,admin_inspection
+run22,2026-10-01T09:09:18.085,2026-10-01T09:09:18.336,benign,routine_network,test-pod-apt-run22,,healthcheck
+run22,2026-10-01T09:10:15.351,2026-10-01T09:10:15.491,attack,rsync,test-pod-apt-run22,Launch Ingress Remote File Copy Tools in Container,
+run22,2026-10-01T09:10:17.499,2026-10-01T09:10:17.622,attack,ssh_info,test-pod-apt-run22,Read ssh information,
+run22,2026-10-01T09:11:05.630,2026-10-01T09:11:05.632,idle,idle_start,,,final_idle
+run22,2026-10-01T09:14:05.636,2026-10-01T09:14:05.638,idle,idle_end,,,final_idle
+run23,2026-10-01T09:26:16.361,2026-10-01T09:26:16.361,meta,pod_created,test-pod-run23,,image:busybox
+run23,2026-10-01T09:26:21.379,2026-10-01T09:26:21.379,meta,pod_created,test-pod-apt-run23,,image:ubuntu
+run23,2026-10-01T09:26:21.381,2026-10-01T09:26:21.383,idle,idle_start,,,initial_idle
+run23,2026-10-01T09:29:21.388,2026-10-01T09:29:21.390,idle,idle_end,,,initial_idle
+run23,2026-10-01T09:29:34.947,2026-10-01T09:29:44.639,benign,pkg_mgmt_fresh,test-pod-apt-run23,Launch Package Management Process in Container,fresh_pod_setup
+run23,2026-10-01T09:29:44.644,2026-10-01T09:29:44.752,attack,ssh_info,test-pod-apt-run23,Read ssh information,
+run23,2026-10-01T09:31:13.764,2026-10-01T09:31:13.901,attack,k8s_api,test-pod-apt-run23,Contact K8S API Server From Container,
+run23,2026-10-01T09:31:16.908,2026-10-01T09:31:17.060,attack,env_privesc,test-pod-apt-run23,Potential Local Privilege Escalation via Environment Variables Misuse,
+run23,2026-10-01T09:31:19.064,2026-10-01T09:31:19.172,attack,ssh_info,test-pod-apt-run23,Read ssh information,
+run23,2026-10-01T09:32:19.189,2026-10-01T09:32:19.319,attack,shell,test-pod-run23,Terminal shell in container,
+run23,2026-10-01T09:32:25.324,2026-10-01T09:32:25.371,attack,clear_history,test-pod-apt-run23,Delete or rename shell history,
+run23,2026-10-01T09:32:29.377,2026-10-01T09:32:29.433,attack,shell_config,test-pod-apt-run23,Modify Shell Configuration File,
+run23,2026-10-01T09:32:30.437,2026-10-01T09:32:30.484,attack,ssh_info,test-pod-apt-run23,Read ssh information,
+run23,2026-10-01T09:32:35.491,2026-10-01T09:32:35.545,attack,k8s_api,test-pod-apt-run23,Contact K8S API Server From Container,
+run23,2026-10-01T09:32:37.550,2026-10-01T09:32:37.780,attack,write_root,test-pod-run23,Write below root,
+run23,2026-10-01T09:32:43.788,2026-10-01T09:32:43.897,attack,sensitive_file,test-pod-run23,Read sensitive file untrusted,
+run23,2026-10-01T09:32:48.901,2026-10-01T09:32:49.043,attack,suid,test-pod-run23,Set Setuid or Setgid bit,
+run23,2026-10-01T09:32:50.050,2026-10-01T09:32:50.105,attack,rsync,test-pod-apt-run23,Launch Ingress Remote File Copy Tools in Container,
+run23,2026-10-01T09:34:33.120,2026-10-01T09:34:33.168,attack,pkg_mgmt_late,test-pod-apt-run23,Launch Package Management Process in Container,late(pod already old)
+run23,2026-10-01T09:34:37.171,2026-10-01T09:34:37.223,attack,write_root,test-pod-run23,Write below root,
+run23,2026-10-01T09:34:38.228,2026-10-01T09:34:38.276,attack,shell_config,test-pod-apt-run23,Modify Shell Configuration File,
+run23,2026-10-01T09:34:44.282,2026-10-01T09:34:44.339,attack,suid,test-pod-run23,Set Setuid or Setgid bit,
+run23,2026-10-01T09:34:50.342,2026-10-01T09:34:50.394,attack,ssh_info,test-pod-apt-run23,Read ssh information,
+run23,2026-10-01T09:34:56.399,2026-10-01T09:34:56.454,attack,clear_history,test-pod-apt-run23,Delete or rename shell history,
+run23,2026-10-01T09:35:56.466,2026-10-01T09:35:56.515,benign,config_read,test-pod-apt-run23,,admin_inspection
+run23,2026-10-01T09:36:01.522,2026-10-01T09:36:01.569,benign,routine_network,test-pod-apt-run23,,healthcheck
+run23,2026-10-01T09:36:02.578,2026-10-01T09:36:02.631,benign,routine_read,test-pod-apt-run23,,admin_inspection
+run23,2026-10-01T09:36:39.637,2026-10-01T09:36:39.682,attack,shell,test-pod-run23,Terminal shell in container,
+run23,2026-10-01T09:36:43.687,2026-10-01T09:36:43.746,attack,shell_config,test-pod-apt-run23,Modify Shell Configuration File,
+run23,2026-10-01T09:36:49.751,2026-10-01T09:36:49.802,attack,write_root,test-pod-run23,Write below root,
+run23,2026-10-01T09:36:54.811,2026-10-01T09:36:54.858,attack,pkg_mgmt_late,test-pod-apt-run23,Launch Package Management Process in Container,late(pod already old)
+run23,2026-10-01T09:36:58.867,2026-10-01T09:36:58.921,attack,clear_history,test-pod-apt-run23,Delete or rename shell history,
+run23,2026-10-01T09:38:34.947,2026-10-01T09:38:34.994,attack,clear_history,test-pod-apt-run23,Delete or rename shell history,
+run23,2026-10-01T09:39:53.007,2026-10-01T09:39:53.063,benign,routine_network,test-pod-apt-run23,,healthcheck
+run23,2026-10-01T09:39:54.066,2026-10-01T09:39:54.123,benign,config_read,test-pod-apt-run23,,admin_inspection
+run23,2026-10-01T09:39:59.130,2026-10-01T09:39:59.222,benign,routine_read,test-pod-apt-run23,,admin_inspection
+run23,2026-10-01T09:41:23.258,2026-10-01T09:41:23.314,attack,clear_history,test-pod-apt-run23,Delete or rename shell history,
+run23,2026-10-01T09:41:27.317,2026-10-01T09:41:27.365,attack,suid,test-pod-run23,Set Setuid or Setgid bit,
+run23,2026-10-01T09:41:29.368,2026-10-01T09:41:29.427,attack,binary_drop,test-pod-run23,Drop and execute new binary in container,
+run23,2026-10-01T09:41:35.433,2026-10-01T09:41:35.491,attack,sensitive_file,test-pod-run23,Read sensitive file untrusted,
+run23,2026-10-01T09:41:41.495,2026-10-01T09:41:41.547,attack,pkg_mgmt_late,test-pod-apt-run23,Launch Package Management Process in Container,late(pod already old)
+run23,2026-10-01T09:41:47.552,2026-10-01T09:41:47.601,attack,k8s_api,test-pod-apt-run23,Contact K8S API Server From Container,
+run23,2026-10-01T09:41:51.606,2026-10-01T09:41:51.661,attack,shell,test-pod-run23,Terminal shell in container,
+run23,2026-10-01T09:41:55.666,2026-10-01T09:41:55.722,attack,write_root,test-pod-run23,Write below root,
+run23,2026-10-01T09:42:00.725,2026-10-01T09:42:00.775,attack,shell_config,test-pod-apt-run23,Modify Shell Configuration File,
+run23,2026-10-01T09:43:17.782,2026-10-01T09:43:17.788,idle,idle_round,,,round_10
+run23,2026-10-01T09:44:35.795,2026-10-01T09:44:35.798,idle,idle_round,,,round_11
+run24,2026-10-01T09:45:45.857,2026-10-01T09:45:45.857,meta,pod_created,test-pod-run24,,image:busybox
+run24,2026-10-01T09:45:50.887,2026-10-01T09:45:50.887,meta,pod_created,test-pod-apt-run24,,image:ubuntu
+run24,2026-10-01T09:45:50.889,2026-10-01T09:45:50.890,idle,idle_start,,,initial_idle
+run24,2026-10-01T09:48:50.894,2026-10-01T09:48:50.896,idle,idle_end,,,initial_idle
+run24,2026-10-01T09:49:00.176,2026-10-01T09:49:08.181,benign,pkg_mgmt_fresh,test-pod-apt-run24,Launch Package Management Process in Container,fresh_pod_setup
+run24,2026-10-01T09:49:08.184,2026-10-01T09:49:08.186,idle,idle_round,,,round_1
+run24,2026-10-01T09:49:49.189,2026-10-01T09:49:49.194,idle,idle_round,,,round_2
+run24,2026-10-01T09:51:16.259,2026-10-01T09:51:16.376,attack,rsync,test-pod-apt-run24,Launch Ingress Remote File Copy Tools in Container,
+run24,2026-10-01T09:51:21.429,2026-10-01T09:51:21.522,attack,clear_history,test-pod-apt-run24,Delete or rename shell history,
+run24,2026-10-01T09:51:22.575,2026-10-01T09:51:22.676,attack,write_root,test-pod-run24,Write below root,
+run24,2026-10-01T09:51:27.745,2026-10-01T09:51:27.890,attack,k8s_api,test-pod-apt-run24,Contact K8S API Server From Container,
+run24,2026-10-01T09:52:37.959,2026-10-01T09:52:37.960,meta,pod_respawned,test-pod-run24,,was_phase:gone
+run24,2026-10-01T09:52:42.854,2026-10-01T09:52:42.854,meta,pod_created,test-pod-run24,,image:busybox
+run24,2026-10-01T09:52:42.856,2026-10-01T09:52:42.963,attack,sensitive_file,test-pod-run24,Read sensitive file untrusted,
+run24,2026-10-01T09:52:44.012,2026-10-01T09:52:44.013,meta,pod_respawned,test-pod-apt-run24,,was_phase:gone
+run24,2026-10-01T09:52:48.891,2026-10-01T09:52:48.891,meta,pod_created,test-pod-apt-run24,,image:ubuntu
+run24,2026-10-01T09:52:48.893,2026-10-01T09:52:49.012,attack,clear_history,test-pod-apt-run24,Delete or rename shell history,
+run24,2026-10-01T09:52:50.063,2026-10-01T09:52:50.158,attack,shell,test-pod-run24,Terminal shell in container,
+run24,2026-10-01T09:53:48.254,2026-10-01T09:53:48.352,attack,sensitive_file,test-pod-run24,Read sensitive file untrusted,
+run24,2026-10-01T09:53:50.403,2026-10-01T09:53:50.503,attack,clear_history,test-pod-apt-run24,Delete or rename shell history,
+run24,2026-10-01T09:53:56.564,2026-10-01T09:53:56.662,attack,ssh_info,test-pod-apt-run24,Read ssh information,
+run24,2026-10-01T09:54:01.722,2026-10-01T09:54:01.823,attack,shell_config,test-pod-apt-run24,Modify Shell Configuration File,
+run24,2026-10-01T09:54:04.877,2026-10-01T09:58:05.292,attack,pkg_mgmt_late,test-pod-apt-run24,Launch Package Management Process in Container,late(pod already old)
+run24,2026-10-01T09:58:09.348,2026-10-01T09:58:09.434,attack,shell,test-pod-run24,Terminal shell in container,
+run24,2026-10-01T09:59:28.441,2026-10-01T09:59:28.443,idle,idle_round,,,round_6
+run24,2026-10-01T10:00:41.498,2026-10-01T10:00:41.594,benign,routine_network,test-pod-apt-run24,,healthcheck
+run24,2026-10-01T10:00:47.725,2026-10-01T10:00:47.853,benign,routine_read,test-pod-apt-run24,,admin_inspection
+run24,2026-10-01T10:00:49.914,2026-10-01T10:00:50.010,benign,config_read,test-pod-apt-run24,,admin_inspection
+run24,2026-10-01T10:01:48.076,2026-10-01T10:01:48.177,attack,write_root,test-pod-run24,Write below root,
+run24,2026-10-01T10:01:53.233,2026-10-01T10:01:53.323,attack,k8s_api,test-pod-apt-run24,Contact K8S API Server From Container,
+run24,2026-10-01T10:01:55.376,2026-10-01T10:01:55.478,attack,binary_drop,test-pod-run24,Drop and execute new binary in container,
+run24,2026-10-01T10:02:01.532,2026-10-01T10:02:01.648,attack,clear_history,test-pod-apt-run24,Delete or rename shell history,
+run24,2026-10-01T10:02:02.705,2026-10-01T10:02:02.816,attack,shell_config,test-pod-apt-run24,Modify Shell Configuration File,
+run24,2026-10-01T10:02:04.872,2026-10-01T10:02:04.992,attack,suid,test-pod-run24,Set Setuid or Setgid bit,
+run24,2026-10-01T10:02:09.051,2026-10-01T10:02:09.143,attack,env_privesc,test-pod-apt-run24,Potential Local Privilege Escalation via Environment Variables Misuse,
+run24,2026-10-01T10:03:05.205,2026-10-01T10:03:05.208,meta,pod_respawned,test-pod-run24,,was_phase:gone
+run24,2026-10-01T10:03:14.955,2026-10-01T10:03:14.955,meta,pod_created,test-pod-run24,,image:busybox
+run24,2026-10-01T10:03:14.956,2026-10-01T10:03:15.069,attack,binary_drop,test-pod-run24,Drop and execute new binary in container,
+run24,2026-10-01T10:03:18.134,2026-10-01T10:03:18.135,meta,pod_respawned,test-pod-apt-run24,,was_phase:gone
+run24,2026-10-01T10:03:22.974,2026-10-01T10:03:22.974,meta,pod_created,test-pod-apt-run24,,image:ubuntu
+run24,2026-10-01T10:03:22.977,2026-10-01T10:03:23.073,attack,k8s_api,test-pod-apt-run24,Contact K8S API Server From Container,
+run24,2026-10-01T10:03:24.133,2026-10-01T10:07:34.814,attack,pkg_mgmt_late,test-pod-apt-run24,Launch Package Management Process in Container,late(pod already old)
+run24,2026-10-01T10:07:35.862,2026-10-01T10:07:35.969,attack,clear_history,test-pod-apt-run24,Delete or rename shell history,
+run24,2026-10-01T10:08:12.033,2026-10-01T10:08:12.131,attack,suid,test-pod-run24,Set Setuid or Setgid bit,
+run24,2026-10-01T10:08:15.185,2026-10-01T10:08:15.189,meta,pod_respawned,test-pod-apt-run24,,was_phase:gone
+run24,2026-10-01T10:08:20.449,2026-10-01T10:08:20.449,meta,pod_created,test-pod-apt-run24,,image:ubuntu
+run24,2026-10-01T10:08:20.450,2026-10-01T10:08:20.536,attack,k8s_api,test-pod-apt-run24,Contact K8S API Server From Container,
+run24,2026-10-01T10:08:25.594,2026-10-01T10:08:25.692,attack,shell,test-pod-run24,Terminal shell in container,
+run24,2026-10-01T10:08:30.748,2026-10-01T10:08:40.091,attack,pkg_mgmt_late,test-pod-apt-run24,Launch Package Management Process in Container,late(pod already old)
+run24,2026-10-01T10:09:38.159,2026-10-01T10:09:38.249,benign,routine_network,test-pod-apt-run24,,healthcheck
+run24,2026-10-01T10:09:42.322,2026-10-01T10:09:42.422,benign,config_read,test-pod-apt-run24,,admin_inspection
+run24,2026-10-01T10:09:48.478,2026-10-01T10:09:48.586,benign,routine_read,test-pod-apt-run24,,admin_inspection
+run24,2026-10-01T10:10:47.774,2026-10-01T10:10:47.872,attack,rsync,test-pod-apt-run24,Launch Ingress Remote File Copy Tools in Container,
+run24,2026-10-01T10:10:50.941,2026-10-01T10:10:51.068,attack,ssh_info,test-pod-apt-run24,Read ssh information,
+run24,2026-10-01T10:10:56.122,2026-10-01T10:10:56.251,attack,shell_config,test-pod-apt-run24,Modify Shell Configuration File,
+run24,2026-10-01T10:11:01.315,2026-10-01T10:11:01.399,attack,k8s_api,test-pod-apt-run24,Contact K8S API Server From Container,
+run24,2026-10-01T10:12:25.466,2026-10-01T10:12:25.618,attack,env_privesc,test-pod-apt-run24,Potential Local Privilege Escalation via Environment Variables Misuse,
+run24,2026-10-01T10:12:26.685,2026-10-01T10:12:26.687,meta,pod_respawned,test-pod-run24,,was_phase:gone
+run24,2026-10-01T10:12:36.673,2026-10-01T10:12:36.673,meta,pod_created,test-pod-run24,,image:busybox
+run24,2026-10-01T10:12:36.675,2026-10-01T10:12:36.852,attack,shell,test-pod-run24,Terminal shell in container,
+run24,2026-10-01T10:12:38.904,2026-10-01T10:12:39.004,attack,write_root,test-pod-run24,Write below root,
+run24,2026-10-01T10:14:15.067,2026-10-01T10:14:15.162,attack,shell_config,test-pod-apt-run24,Modify Shell Configuration File,
+run24,2026-10-01T10:15:39.323,2026-10-01T10:15:39.324,meta,pod_respawned,test-pod-apt-run24,,was_phase:gone
+run24,2026-10-01T10:15:44.517,2026-10-01T10:15:44.517,meta,pod_created,test-pod-apt-run24,,image:ubuntu
+run24,2026-10-01T10:15:44.519,2026-10-01T10:15:44.620,benign,routine_network,test-pod-apt-run24,,healthcheck
+run24,2026-10-01T10:15:46.670,2026-10-01T10:15:46.783,benign,config_read,test-pod-apt-run24,,admin_inspection
+run24,2026-10-01T10:16:53.791,2026-10-01T10:16:53.794,idle,idle_start,,,final_idle
+run24,2026-10-01T10:19:53.797,2026-10-01T10:19:53.799,idle,idle_end,,,final_idle

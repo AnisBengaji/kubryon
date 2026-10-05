@@ -1,0 +1,25 @@
+{
+  "feature_columns": [
+    "event_count",
+    "critical_count",
+    "distinct_rules",
+    "max_priority_weight",
+    "avg_priority_weight",
+    "pod_age_seconds",
+    "contact_k8s_api_server_from_co",
+    "delete_or_rename_shell_history",
+    "drop_and_execute_new_binary_in",
+    "env_var_privesc",
+    "modify_shell_config",
+    "package_mgmt_process",
+    "read_sensitive_file_untrusted",
+    "read_ssh_information",
+    "remote_file_copy_tools",
+    "suspicious_suid_bit_set",
+    "terminal_shell_in_container",
+    "write_below_root"
+  ],
+  "warning_proba": 0.5,
+  "critical_proba": 0.8,
+  "model_type": "RandomForest"
+}

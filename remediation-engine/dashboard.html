@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentinel — Remediation Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#090b11;
+    --bg-grid:#0d1017;
+    --panel:#11141d;
+    --panel-2:#161a26;
+    --border:#1f2432;
+    --border-soft:#191d29;
+    --text:#e7e9f2;
+    --text-dim:#7d84991a;
+    --dim:#7b8299;
+    --dim-2:#4d5366;
+    --critical:#ff4d5e;
+    --critical-glow:rgba(255,77,94,.18);
+    --warning:#ffab40;
+    --warning-glow:rgba(255,171,64,.16);
+    --safe:#3fd694;
+    --safe-glow:rgba(63,214,148,.16);
+    --breaker:#a879ff;
+    --breaker-glow:rgba(168,121,255,.16);
+    --cyan:#31d6ff;
+    --radius:10px;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --sans:'Inter', system-ui, sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(49,214,255,.06), transparent),
+      var(--bg);
+    background-image:
+      linear-gradient(var(--bg-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px),
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(49,214,255,.06), transparent);
+    background-size: 42px 42px, 42px 42px, 100% 100%;
+    color:var(--text);
+    font-family:var(--sans);
+    min-height:100vh;
+    padding:28px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  .wrap{max-width:1240px; margin:0 auto;}
+
+  /* ---------- Header ---------- */
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:16px;
+    padding-bottom:22px; margin-bottom:26px;
+    border-bottom:1px solid var(--border);
+  }
+
+  .brand{display:flex; align-items:center; gap:14px;}
+
+  .radar{
+    position:relative; width:38px; height:38px; flex:none;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(49,214,255,.08), transparent 70%);
+    overflow:hidden;
+  }
+  .radar::before{
+    content:'';
+    position:absolute; inset:0;
+    border-radius:50%;
+    background: conic-gradient(from 0deg, var(--cyan) 0deg, transparent 55deg, transparent 360deg);
+    opacity:.55;
+    animation: sweep 2.4s linear infinite;
+  }
+  .radar::after{
+    content:'';
+    position:absolute; inset:0; margin:auto;
+    width:5px; height:5px; border-radius:50%;
+    background:var(--cyan);
+    top:50%; left:50%; transform:translate(-50%,-50%);
+    box-shadow:0 0 8px 2px rgba(49,214,255,.7);
+  }
+  @keyframes sweep{ to{ transform:rotate(360deg);} }
+
+  .brand-text h1{
+    font-family:var(--mono); font-size:19px; font-weight:700;
+    letter-spacing:.02em;
+  }
+  .brand-text .sub{
+    font-size:12px; color:var(--dim); letter-spacing:.04em; margin-top:2px;
+    font-family:var(--mono);
+  }
+
+  .status-cluster{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+
+  .live-pill{
+    display:flex; align-items:center; gap:8px;
+    background:var(--panel); border:1px solid var(--border);
+    padding:8px 14px; border-radius:999px;
+    font-family:var(--mono); font-size:12px; color:var(--dim);
+  }
+  .live-dot{
+    width:7px; height:7px; border-radius:50%; background:var(--safe);
+    box-shadow:0 0 0 0 rgba(63,214,148,.6);
+    animation:pulse-dot 1.8s ease-out infinite;
+  }
+  @keyframes pulse-dot{
+    0%{ box-shadow:0 0 0 0 rgba(63,214,148,.55);}
+    70%{ box-shadow:0 0 0 8px rgba(63,214,148,0);}
+    100%{ box-shadow:0 0 0 0 rgba(63,214,148,0);}
+  }
+
+  .clock{font-family:var(--mono); font-size:12px; color:var(--dim-2);}
+
+  /* ---------- Stats ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-bottom:28px;
+  }
+  .stat{
+    background:linear-gradient(180deg, var(--panel-2), var(--panel));
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px 18px 16px;
+    position:relative;
+    overflow:hidden;
+    opacity:0; transform:translateY(10px);
+    animation:rise .5s ease forwards;
+  }
+  .stat::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:var(--bar, var(--dim-2));
+  }
+  .stat:nth-child(1){animation-delay:.03s}
+  .stat:nth-child(2){animation-delay:.09s}
+  .stat:nth-child(3){animation-delay:.15s}
+  .stat:nth-child(4){animation-delay:.21s}
+  .stat:nth-child(5){animation-delay:.27s}
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+
+  .stat.critical{--bar:var(--critical)}
+  .stat.warning{--bar:var(--warning)}
+  .stat.safe{--bar:var(--safe)}
+  .stat.breaker{--bar:var(--breaker)}
+  .stat.total{--bar:var(--cyan)}
+
+  .stat .label{
+    font-size:11px; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--dim); font-family:var(--mono); margin-bottom:10px;
+  }
+  .stat .value{
+    font-family:var(--mono); font-size:32px; font-weight:700; line-height:1;
+    color:var(--text);
+  }
+  .stat .delta{font-size:11px; color:var(--dim-2); margin-top:8px; font-family:var(--mono);}
+
+  @media (max-width:900px){ .stats{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .stats{grid-template-columns:1fr;} }
+
+  /* ---------- Feed ---------- */
+  .feed-head{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .feed-head h2{
+    font-family:var(--mono); font-size:13px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--dim);
+  }
+  .filter-row{display:flex; gap:6px; flex-wrap:wrap;}
+  .chip{
+    font-family:var(--mono); font-size:11px; color:var(--dim);
+    background:var(--panel); border:1px solid var(--border);
+    padding:6px 11px; border-radius:999px; cursor:pointer;
+    transition:.15s ease;
+  }
+  .chip:hover, .chip.active{
+    color:var(--text); border-color:var(--dim-2); background:var(--panel-2);
+  }
+
+  .incident{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-left:3px solid var(--dim-2);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    margin-bottom:12px;
+    opacity:0; transform:translateX(-8px);
+    animation:slide-in .4s ease forwards;
+    transition:border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+  }
+  .incident:hover{
+    transform:translateX(2px);
+    box-shadow:0 4px 24px -8px rgba(0,0,0,.5);
+  }
+  @keyframes slide-in{ to{opacity:1; transform:translateX(0);} }
+
+  .incident.kill{ border-left-color:var(--critical); }
+  .incident.isolate{ border-left-color:var(--warning); }
+  .incident.log_only{ border-left-color:var(--safe); }
+  .incident.circuit_breaker{ border-left-color:var(--breaker); }
+
+  .incident-top{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .incident-id{display:flex; align-items:center; gap:10px; min-width:0;}
+  .pod-name{font-family:var(--mono); font-weight:600; font-size:14px;}
+  .ns-tag{
+    font-family:var(--mono); font-size:10px; color:var(--dim);
+    background:var(--panel-2); border:1px solid var(--border);
+    padding:2px 7px; border-radius:5px;
+  }
+
+  .action-badge{
+    font-family:var(--mono); font-size:11px; font-weight:700;
+    letter-spacing:.03em; text-transform:uppercase;
+    padding:4px 10px; border-radius:6px;
+    white-space:nowrap;
+  }
+  .action-badge.kill{ color:var(--critical); background:var(--critical-glow); }
+  .action-badge.isolate{ color:var(--warning); background:var(--warning-glow); }
+  .action-badge.log_only{ color:var(--safe); background:var(--safe-glow); }
+  .action-badge.circuit_breaker{ color:var(--breaker); background:var(--breaker-glow); }
+
+  .incident-meta{
+    display:flex; flex-wrap:wrap; gap:14px;
+    font-size:12.5px; color:var(--dim);
+    margin-bottom:10px;
+  }
+  .incident-meta b{color:var(--text); font-weight:600;}
+  .score-tag{font-family:var(--mono);}
+
+  .mitre-row{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:4px;}
+  .mitre-chip{
+    font-family:var(--mono); font-size:10px; color:var(--cyan);
+    border:1px solid rgba(49,214,255,.25); background:rgba(49,214,255,.06);
+    padding:2px 8px; border-radius:5px;
+  }
+
+  .report-toggle{
+    font-family:var(--mono); font-size:11px; color:var(--dim-2);
+    cursor:pointer; margin-top:8px; display:inline-flex; align-items:center; gap:6px;
+    user-select:none;
+  }
+  .report-toggle:hover{color:var(--dim);}
+  .report-toggle .chevron{transition:transform .2s ease; display:inline-block;}
+  .report-toggle.open .chevron{transform:rotate(90deg);}
+
+  .report-body{
+    max-height:0; overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  .report-body.open{max-height:600px;}
+  .report-inner{
+    font-family:var(--mono); font-size:11.5px; line-height:1.6;
+    color:var(--dim); white-space:pre-wrap;
+    background:var(--bg); border:1px solid var(--border-soft);
+    border-radius:8px; padding:14px; margin-top:10px;
+  }
+
+  .warn-flag{
+    display:inline-block; margin-top:8px;
+    font-family:var(--mono); font-size:10.5px; color:var(--warning);
+    background:var(--warning-glow); border:1px solid rgba(255,171,64,.3);
+    padding:3px 9px; border-radius:5px;
+  }
+
+  footer{
+    margin-top:30px; padding-top:18px;
+    border-top:1px solid var(--border);
+    font-family:var(--mono); font-size:11px; color:var(--dim-2);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--border); border-radius:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="radar"></div>
+      <div class="brand-text">
+        <h1>SENTINEL</h1>
+        <div class="sub">autonomous remediation console</div>
+      </div>
+    </div>
+    <div class="status-cluster">
+      <div class="live-pill"><span class="live-dot"></span> LIVE — polling 5s</div>
+      <div class="clock" id="clock">--:--:--</div>
+    </div>
+  </header>
+
+  <section class="stats" id="stats">
+    <div class="stat total">
+      <div class="label">Total Events</div>
+      <div class="value" data-count="77">0</div>
+      <div class="delta">window: 120s rolling</div>
+    </div>
+    <div class="stat critical">
+      <div class="label">Pods Killed</div>
+      <div class="value" data-count="22">0</div>
+      <div class="delta">critical threshold &lt; -0.20</div>
+    </div>
+    <div class="stat warning">
+      <div class="label">Pods Isolated</div>
+      <div class="value" data-count="4">0</div>
+      <div class="delta">warning threshold &lt; -0.05</div>
+    </div>
+    <div class="stat breaker">
+      <div class="label">Breaker Blocks</div>
+      <div class="value" data-count="10">0</div>
+      <div class="delta">2 actions / 300s per workload</div>
+    </div>
+    <div class="stat safe">
+      <div class="label">Resource Alerts</div>
+      <div class="value" data-count="0">0</div>
+      <div class="delta">not yet integrated</div>
+    </div>
+  </section>
+
+  <div class="feed-head">
+    <h2>Incident Feed</h2>
+    <div class="filter-row" id="filters">
+      <span class="chip active" data-f="all">All</span>
+      <span class="chip" data-f="kill">Kill</span>
+      <span class="chip" data-f="isolate">Isolate</span>
+      <span class="chip" data-f="circuit_breaker">Breaker</span>
+      <span class="chip" data-f="log_only">Log only</span>
+    </div>
+  </div>
+
+  <div id="feed"></div>
+
+  <footer>
+    <span>remediation_log.jsonl + incident_reports.jsonl</span>
+    <span id="last-update">last sync —</span>
+  </footer>
+
+</div>
+
+<script>
+// ---------------------------------------------------------------
+// Mock data shaped exactly like remediation_log.jsonl / incident_reports.jsonl
+// so this preview looks right immediately. Replace loadIncidents() body
+// with the real fetch('/api/incidents') call from your Flask backend —
+// see the integration note printed in the console.
+// ---------------------------------------------------------------
+const MOCK = [
+  {
+    timestamp: new Date(Date.now() - 1000*60*2).toISOString(),
+    pod_name: "test-pod", namespace: "default",
+    anomaly_score: -0.2099, action: "kill",
+    triggering_rule: "Contact K8S API Server From Container",
+    triggering_priority: "Notice",
+    mitre_tags: ["T1565","container","network"],
+    report: "======================================================\nINCIDENT REPORT\n======================================================\nAffected Workload\n  Pod: test-pod / Namespace: default\nDetection\n  Falco Rule: Contact K8S API Server From Container\n  MITRE: T1565 - Data Manipulation (Impact)\nDecision\n  Risk Level: Medium — Automatic Action: kill\nAnalyst Briefing\n  Outbound connection to the Kubernetes API server was detected from inside the container using the mounted service account token.",
+    warn: false
+  },
+  {
+    timestamp: new Date(Date.now() - 1000*60*6).toISOString(),
+    pod_name: "test-pod", namespace: "default",
+    anomaly_score: -0.196, action: "isolate",
+    triggering_rule: "Launch Suspicious Network Tool in Container",
+    triggering_priority: "Notice",
+    mitre_tags: ["T1059","process"],
+    report: "======================================================\nINCIDENT REPORT\n======================================================\nDetection\n  Falco Rule: Launch Suspicious Network Tool in Container\nDecision\n  Risk Level: Medium — Automatic Action: isolate\nAnalyst Briefing\n  A network utility (nc) was launched inside the container prior to an outbound connection attempt.",
+    warn: false
+  },
+  {
+    timestamp: new Date(Date.now() - 1000*60*11).toISOString(),
+    pod_name: "metadata-db-5748699756-k7856", namespace: "default",
+    anomaly_score: -0.31, action: "kill_blocked_circuit_breaker",
+    triggering_rule: "Drop and execute new binary in container",
+    triggering_priority: "Critical",
+    mitre_tags: ["TA0003","mitre_persistence"],
+    report: "Circuit breaker tripped for workload metadata-db — 2 actions within 300s window. Auto-recovers in 10s.",
+    warn: true
+  },
+  {
+    timestamp: new Date(Date.now() - 1000*60*20).toISOString(),
+    pod_name: "test-pod", namespace: "default",
+    anomaly_score: -0.09, action: "log_only",
+    triggering_rule: "Read sensitive file untrusted",
+    triggering_priority: "Warning",
+    mitre_tags: ["T1555","filesystem"],
+    report: "Score above warning threshold — logged for visibility only, no automated action taken.",
+    warn: false
+  }
+];
+
+const ACTION_MAP = {
+  kill: "kill", kill_blocked_circuit_breaker: "circuit_breaker",
+  kill_skipped_already_done: "kill",
+  isolate: "isolate", isolate_blocked_circuit_breaker: "circuit_breaker",
+  isolate_skipped_already_done: "isolate",
+  log_only: "log_only"
+};
+const ACTION_LABEL = {
+  kill: "KILL", kill_blocked_circuit_breaker: "BREAKER BLOCKED",
+  kill_skipped_already_done: "KILL (dup)",
+  isolate: "ISOLATE", isolate_blocked_circuit_breaker: "BREAKER BLOCKED",
+  isolate_skipped_already_done: "ISOLATE (dup)",
+  log_only: "LOG ONLY"
+};
+
+function timeAgo(iso){
+  const s = Math.floor((Date.now() - new Date(iso).getTime())/1000);
+  if(s<60) return s+"s ago";
+  if(s<3600) return Math.floor(s/60)+"m ago";
+  return Math.floor(s/3600)+"h ago";
+}
+
+function renderFeed(data, filter="all"){
+  const feed = document.getElementById("feed");
+  feed.innerHTML = "";
+  data
+    .filter(d => filter==="all" || ACTION_MAP[d.action]===filter)
+    .forEach((d, i) => {
+      const cls = ACTION_MAP[d.action] || "log_only";
+      const el = document.createElement("div");
+      el.className = "incident " + cls;
+      el.style.animationDelay = (i*0.05)+"s";
+      el.innerHTML = `
+        <div class="incident-top">
+          <div class="incident-id">
+            <span class="pod-name">${d.pod_name}</span>
+            <span class="ns-tag">${d.namespace}</span>
+          </div>
+          <span class="action-badge ${cls}">${ACTION_LABEL[d.action] || d.action}</span>
+        </div>
+        <div class="incident-meta">
+          <span><b>${d.triggering_rule}</b></span>
+          <span class="score-tag">score ${d.anomaly_score}</span>
+          <span>${d.triggering_priority}</span>
+          <span>${timeAgo(d.timestamp)}</span>
+        </div>
+        <div class="mitre-row">
+          ${(d.mitre_tags||[]).filter(t=>t).map(t=>`<span class="mitre-chip">${t}</span>`).join("")}
+        </div>
+        ${d.warn ? '<span class="warn-flag">⚠ needs manual review</span>' : ''}
+        <div class="report-toggle"><span class="chevron">▸</span> SOC report</div>
+        <div class="report-body"><div class="report-inner">${d.report || "No report generated."}</div></div>
+      `;
+      const toggle = el.querySelector(".report-toggle");
+      const body = el.querySelector(".report-body");
+      toggle.addEventListener("click", () => {
+        toggle.classList.toggle("open");
+        body.classList.toggle("open");
+      });
+      feed.appendChild(el);
+    });
+}
+
+function animateCounters(){
+  document.querySelectorAll(".stat .value").forEach(el => {
+    const target = parseInt(el.dataset.count, 10);
+    let cur = 0;
+    const step = Math.max(1, Math.ceil(target/30));
+    const t = setInterval(() => {
+      cur += step;
+      if(cur >= target){ cur = target; clearInterval(t); }
+      el.textContent = cur;
+    }, 20);
+  });
+}
+
+function tickClock(){
+  document.getElementById("clock").textContent = new Date().toLocaleTimeString();
+}
+
+async function loadIncidents(){
+  // --- INTEGRATION POINT ---
+  // Swap this block for: const data = await (await fetch('/api/incidents')).json();
+  // Expected shape per item matches remediation_log.jsonl fields, plus an
+  // optional `report` (from incident_reports.jsonl) and `warn` (verification flag).
+  return MOCK;
+}
+
+let currentFilter = "all";
+document.getElementById("filters").addEventListener("click", (e) => {
+  if(!e.target.classList.contains("chip")) return;
+  document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  e.target.classList.add("active");
+  currentFilter = e.target.dataset.f;
+  loadIncidents().then(d => renderFeed(d, currentFilter));
+});
+
+async function refresh(){
+  const data = await loadIncidents();
+  renderFeed(data, currentFilter);
+  document.getElementById("last-update").textContent = "last sync " + new Date().toLocaleTimeString();
+}
+
+animateCounters();
+tickClock();
+setInterval(tickClock, 1000);
+refresh();
+setInterval(refresh, 5000);
+
+console.log("%cIntegration:", "color:#31d6ff;font-weight:bold", "replace loadIncidents() with a real fetch('/api/incidents') call, and map each stat's data-count to your live totals.");
+</script>
+</body>
+</html>

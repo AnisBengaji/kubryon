@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Kubryon — Runtime Security{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='kubryon.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" x-data="{collapsed:false}">
+      <div class="brand-row">
+        <div class="brand-mark"><i data-lucide="shield-check"></i></div>
+        <div class="brand-copy" x-show="!collapsed" x-transition>
+          <div class="brand-name">KUBRYON</div>
+          <div class="brand-sub">RUNTIME SECURITY</div>
+        </div>
+        <button class="icon-btn collapse-btn" @click="collapsed=!collapsed" title="Collapse navigation"><i data-lucide="panel-left-close"></i></button>
+      </div>
+
+      <div class="nav-section" x-show="!collapsed">OPERATIONS</div>
+      <nav class="nav-list">
+        <a href="/" class="nav-item {% if active_page == 'overview' %}active{% endif %}" title="Overview">
+          <i data-lucide="layout-dashboard"></i><span x-show="!collapsed">Overview</span>
+        </a>
+        <a href="#incidents" class="nav-item" title="Incidents">
+          <i data-lucide="shield-alert"></i><span x-show="!collapsed">Incidents</span>
+          <span class="nav-dot" x-show="!collapsed"></span>
+        </a>
+        <a href="/topology" class="nav-item {% if active_page == 'topology' %}active{% endif %}" title="Cluster topology">
+          <i data-lucide="network"></i><span x-show="!collapsed">Cluster topology</span>
+        </a>
+      </nav>
+
+      <div class="nav-section" x-show="!collapsed">PIPELINE</div>
+      <div class="pipeline-mini" x-show="!collapsed">
+        <div class="pipeline-node"><span class="pipeline-icon"><i data-lucide="radio"></i></span><div><b>Falco</b><small>Runtime events</small></div><span class="state-dot"></span></div>
+        <div class="pipeline-line"></div>
+        <div class="pipeline-node"><span class="pipeline-icon"><i data-lucide="scan-search"></i></span><div><b>Anomaly engine</b><small>Isolation Forest</small></div><span class="state-dot"></span></div>
+        <div class="pipeline-line"></div>
+        <div class="pipeline-node"><span class="pipeline-icon"><i data-lucide="shield-off"></i></span><div><b>Response</b><small>Kill / isolate</small></div><span class="state-dot"></span></div>
+      </div>
+
+      <div class="sidebar-footer" x-show="!collapsed">
+        <div class="footer-status"><span class="state-dot"></span> Protection active</div>
+        <div class="footer-version">Kubryon runtime security console</div>
+      </div>
+    </aside>
+
+    <main class="main-shell">
+      <header class="topbar">
+        <div>{% block topbar %}{% endblock %}</div>
+        <div class="topbar-right">
+          <div class="cluster-chip"><span class="state-dot"></span> Cluster connected</div>
+          <div class="topbar-time" id="global-time">--:--:-- UTC</div>
+        </div>
+      </header>
+      <section class="content-wrap">{% block content %}{% endblock %}</section>
+    </main>
+  </div>
+  <script>document.addEventListener('DOMContentLoaded',()=>{if(window.lucide) lucide.createIcons();});</script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

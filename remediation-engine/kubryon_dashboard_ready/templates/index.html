@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Kubryon — Runtime Security Overview{% endblock %}
+{% block topbar %}
+  <div><div class="page-title">Runtime security overview</div><div class="page-subtitle">Kubernetes telemetry, anomaly detection and automated response</div></div>
+{% endblock %}
+{% block content %}
+<div x-data="kubryonDashboard()" x-init="init()">
+  <div class="dashboard-toolbar">
+    <div class="toolbar-left">
+      <div class="search-box"><i data-lucide="search"></i><input x-model="search" placeholder="Search pod, namespace, Falco rule, action..." /></div>
+      <div class="live-pill"><span class="state-dot" :style="connected ? '' : 'background:var(--red)'" x-ref="liveDot"></span><span x-text="connected ? 'Live telemetry' : 'API disconnected'"></span></div>
+    </div>
+    <div class="toolbar-right"><div class="panel-kicker">Last refresh <span x-text="lastRefreshDisplay"></span></div><button class="filter-pill" @click="refresh()"><i data-lucide="refresh-cw" style="width:12px"></i> Refresh</button></div>
+  </div>
+  <div class="loading-line" x-show="loading"></div>
+
+  <section class="kpi-grid" style="margin-top:12px">
+    <div class="kpi blue"><div class="kpi-label">Recorded events</div><div class="kpi-value" x-text="stats.total_events"></div><div class="kpi-meta">Falco + resource telemetry</div></div>
+    <div class="kpi red"><div class="kpi-label">Critical / high</div><div class="kpi-value" x-text="criticalCount + highCount"></div><div class="kpi-meta"><span x-text="criticalCount"></span> critical · <span x-text="highCount"></span> high</div></div>
+    <div class="kpi red"><div class="kpi-label">Pods killed</div><div class="kpi-value" x-text="stats.killed"></div><div class="kpi-meta">Automated termination response</div></div>
+    <div class="kpi blue"><div class="kpi-label">Pods isolated</div><div class="kpi-value" x-text="stats.isolated"></div><div class="kpi-meta">Cilium quarantine response</div></div>
+    <div class="kpi amber"><div class="kpi-label">Affected pods</div><div class="kpi-value" x-text="stats.pods_affected"></div><div class="kpi-meta"><span x-text="stats.circuit_breaker_blocks"></span> circuit-breaker blocks</div></div>
+  </section>
+
+  <div class="grid-main">
+    <section class="panel"><div class="panel-head"><div><div class="panel-title">Threat activity</div><div class="panel-kicker">Recent runtime detections</div></div><div class="panel-kicker">5 min buckets</div></div><div class="panel-body"><div class="chart-box"><canvas id="activityChart"></canvas></div></div></section>
+    <section class="panel"><div class="panel-head"><div><div class="panel-title">Response distribution</div><div class="panel-kicker">Automated actions</div></div></div><div class="panel-body"><div class="chart-box"><canvas id="actionsChart"></canvas></div></div></section>
+  </div>
+
+  <div class="lower-grid">
+    <section class="panel" id="incidents"><div class="panel-head"><div><div class="panel-title">Incident stream</div><div class="panel-kicker" x-text="filteredIncidents.length + ' actionable records'"> </div></div><select class="select-like" x-model="filter"><option value="all">All severities</option><option value="critical">Critical</option><option value="high">High</option><option value="medium">Medium</option><option value="kill">Kill actions</option><option value="isolate">Isolation actions</option></select></div>
+      <div class="incident-list">
+        <template x-for="incident in filteredIncidents.slice(0,50)" :key="incident.id">
+          <article class="incident-row" @click="toggleIncident(incident.id)">
+            <div class="incident-top"><span class="severity" :class="priorityClass(incident.triggering_priority)" x-text="normalizePriority(incident.triggering_priority)"></span><span class="incident-time" x-text="formatTime(incident.timestamp)"></span></div>
+            <div class="incident-rule" x-text="incident.triggering_rule || 'Runtime event'" ></div>
+            <div class="incident-target"><span x-text="incident.namespace || 'default'"></span> / <span x-text="incident.pod_name || 'unknown pod'"></span></div>
+            <div class="incident-foot"><span class="action-badge" :class="actionClass(incident.action)" x-text="actionLabel(incident.action)"></span><span class="score" x-show="incident.anomaly_score !== null && incident.anomaly_score !== undefined">anomaly <span x-text="formatScore(incident.anomaly_score)"></span></span><template x-for="tag in (incident.mitre_tags || []).slice(0,3)" :key="tag"><span class="score" x-text="tag"></span></template></div>
+            <div x-show="expanded === incident.id" style="margin-top:10px;padding-top:10px;border-top:1px solid #1c2730" x-transition>
+              <div class="panel-kicker">Incident report</div><div style="font-size:10px;color:#a6b1ba;line-height:1.55;margin-top:5px" x-text="incident.summary || 'No generated incident report available.'"></div>
+            </div>
+          </article>
+        </template>
+        <div class="empty-state" x-show="filteredIncidents.length === 0">No matching incidents in the current telemetry window.</div>
+      </div>
+    </section>
+
+    <div style="display:grid;gap:12px;align-content:start">
+      <section class="panel"><div class="panel-head"><div><div class="panel-title">Detection hotspots</div><div class="panel-kicker">Top Falco rules</div></div></div><div class="panel-body"><template x-for="rule in stats.top_rules" :key="rule.rule"><div class="hotspot"><div><div class="hotspot-name" x-text="rule.rule"></div><div class="bar-track"><div class="bar-fill" :style="`width:${ruleBar(rule.count)}%`"></div></div></div><div class="hotspot-count" x-text="rule.count"></div></div></template><div class="empty-state" style="padding:20px" x-show="!stats.top_rules.length">No rule activity yet.</div></div></section>
+      <section class="panel"><div class="panel-head"><div><div class="panel-title">Security pipeline</div><div class="panel-kicker">Component health</div></div></div><div class="panel-body" style="padding:9px"><template x-for="component in healthComponents" :key="component.name"><div class="status-card" style="margin-bottom:6px"><span class="state-dot" :style="component.state === 'operational' || component.state === 'armed' ? '' : 'background:var(--red)'" ></span><div><b x-text="component.name"></b><small x-text="component.state"></small></div></div></template></div></section>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='kubryon.js') }}"></script>{% endblock %}

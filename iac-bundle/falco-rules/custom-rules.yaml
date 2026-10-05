@@ -1,0 +1,50 @@
+customRules:
+  custom-rules.yaml: |-
+    - rule: Suspicious SUID bit set
+      desc: Detects an attempt to set the SUID bit on a binary, a common privilege escalation technique
+      condition: >
+        evt.type=chmod and container and
+        evt.arg.mode contains "S_ISUID"
+      output: >
+        SUID bit set on binary (user=%user.name command=%proc.cmdline file=%evt.arg.filename container=%container.name)
+      priority: WARNING
+      tags: [privilege_escalation, filesystem]
+
+    - macro: not_host_process
+      condition: (container.id != host)
+
+    - rule: Read sensitive file untrusted
+      append: true
+      condition: and not_host_process
+
+    - rule: Drop and execute new binary in container
+      append: true
+      condition: and not (proc.name = "mount" and (proc.cmdline contains "product_uuid" or proc.cmdline contains "product_name"))
+
+    - rule: Terminal shell in container
+      append: true
+      condition: and not_host_process
+      
+    - rule: Drop and execute new binary in container
+      append: true
+      condition: and not (proc.name = "mount" and proc.cmdline contains "product_uuid")
+
+    - rule: Redirect STDOUT/STDIN to Network Connection in Container
+      append: true
+      condition: and not (proc.name = kubelet)
+
+    - rule: Directory traversal monitored file read
+      append: true
+      condition: and not_host_process
+
+    - rule: Write below root
+      append: true
+      condition: and not_host_process
+
+    - rule: Potential Local Privilege Escalation via Environment Variables Misuse
+      append: true
+      condition: and not_host_process
+
+    - rule: Change thread namespace
+      append: true
+      condition: and not_host_process

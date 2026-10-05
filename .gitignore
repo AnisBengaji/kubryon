@@ -1,0 +1,34 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs and generated data
+*.jsonl
+remediation_log*.jsonl
+falco_alerts*.jsonl
+incident_reports.jsonl
+incident_summaries*.jsonl
+benchmark_results.json
+
+# Archive / backup folders
+archive/
+*backup*/
+*.bak*
+*_backup*
+
+# Downloaded installers
+*.tar.gz
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Secrets
+*.kubeconfig
+kubeconfig*
+*.pem
+*.key
+kubernetes-goat/

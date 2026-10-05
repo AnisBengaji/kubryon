@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vulnerable-log-viewer
+  namespace: default
+  labels:
+    app: vulnerable-log-viewer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vulnerable-log-viewer
+  template:
+    metadata:
+      labels:
+        app: vulnerable-log-viewer
+    spec:
+      containers:
+        - name: vulnerable-log-viewer
+          image: vulnerable-log-viewer:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "200m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vulnerable-log-viewer
+  namespace: default
+spec:
+  selector:
+    app: vulnerable-log-viewer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
