@@ -14,7 +14,7 @@ Built during an 8-week internship at Esprit-Cloud (R&D team, ESPRIT — École d
 
 ## Architecture
 
-![Kubernetes AI-Driven Detection and Remediation Architecture](architecture.png)
+![Kubernetes AI-Driven Detection and Remediation Architecture](k8s_engine_arch.png)
 
 ---
 
